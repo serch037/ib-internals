@@ -137,3 +137,6 @@ sympy-plots-for-*.tex/
 
 # OUT FOLDER 
 OUT/
+
+# HELP FOLDER 
+HELP/
