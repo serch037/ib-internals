@@ -1,0 +1,101 @@
+
+\documentclass[12pt,letterpaper,oneside,DIV=13]{scrartcl}
+\usepackage{paralist}
+\usepackage{ifpdf}
+\usepackage{url}
+
+%Language Settings
+\usepackage[
+    spanish]
+    %english]
+    {babel}
+
+    \usepackage[
+%spanish=mexican,
+    %american,
+    %autostyle=true
+    ]{csquotes}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+\usepackage{setspace}
+\setsansfont[Ligatures=TeX]{Lato}
+%\usepackage{sectsty}
+\setmainfont[Ligatures=TeX]{Minion Pro}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[document]{ragged2e}
+%\usepackage{indentfirst}
+
+%\usepackage{parskip}
+
+% MLA
+%\usepackage[margin=1in]{geometry}
+%\pagestyle{headings}
+%\setlength{\paperheight}{11in}
+%\setlength{\paperwidth}{8.5in}
+%\setlength{\textwidth}{6.5in}
+%\setlength{\textheight}{9in}
+%\setlength{\footskip}{40pt}
+%\setlength{\hoffset}{0in}
+%\setlength{\voffset}{-1in}
+%\setlength{\topmargin}{.5in}        
+%\setlength{\headsep}{18pt}
+%\setlength{\headheight}{15pt} 
+
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\lhead{} 
+%\chead{} 
+%\rhead{Ugalde Marcano \thepage} 
+%\lfoot{} 
+%\cfoot{} 
+%\rfoot{} 
+%\renewcommand{\headrulewidth}{0pt} 
+%\renewcommand{\footrulewidth}{0pt} 
+%To make sure we actually have header 0.5in away from top edge
+%12pt is one-sixth of an inch. Subtract this from 0.5in to get headsep value
+
+
+
+\usepackage{booktabs}
+\usepackage{epigraph}
+
+%\usepackage[
+%style=verbose-ibid,
+%    style=mla,
+%    autocite=footnote,
+%     style=ieee,
+%     url=false
+%    ]{biblatex}
+%\DeclareFieldAlias{eprint:ECCC}{eprint:eccc}
+
+\usepackage[notes,
+%autocite=footcite,
+url=false
+]{biblatex-chicago}
+\addbibresource{biblio.bib}
+
+%Fix parenthesis
+
+
+
+\begin{document}
+\begin{flushleft}
+\onehalfspacing
+%Sergio Ugalde Marcano - A01336435\\
+%Monografía II\\
+%Bachillerato Internacional - Prepa Tec\\
+%\today\\
+%Título
+\setlength{\parindent}{0.5in} 
+\onehalfspacing
+\frenchspacing
+\input{out}
+%\nocite{*}
+\printbibliography
+\end{flushleft}
+%\input{citations}
+\end{document}
