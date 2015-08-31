@@ -6,14 +6,14 @@
 
 %Language Settings
 \usepackage[
-    spanish]
+    spanish, mexico]
     %english]
     {babel}
 
     \usepackage[
-%spanish=mexican,
+spanish=mexican,
     %american,
-    %autostyle=true
+    autostyle=true
     ]{csquotes}
 
 
@@ -77,11 +77,12 @@
 url=false
 ]{biblatex-chicago}
 \addbibresource{biblio.bib}
+\addbibresource{extra.bib}
 
 %Fix parenthesis
 
 
-
+\usepackage{paralist}
 \begin{document}
 \begin{flushleft}
 \onehalfspacing
@@ -97,6 +98,7 @@ url=false
 \input{criterioB}
 \input{criterioC}
 %\nocite{*}
+\pagebreak 
 \printbibliography
 \end{flushleft}
 %\input{citations}
