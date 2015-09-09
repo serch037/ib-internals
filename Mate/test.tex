@@ -1,0 +1,79 @@
+\documentclass[12pt,letterpaper,oneside,DIV=13]{scrartcl}
+\usepackage{paralist}
+\usepackage{ifpdf}
+\usepackage{url}
+
+%Language Settings
+\usepackage[
+    spanish, mexico]
+    %english]
+    {babel}
+
+    \usepackage[
+spanish=mexican,
+    %american,
+    autostyle=true
+    ]{csquotes}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+\usepackage{setspace}
+\setsansfont[Ligatures=TeX]{Lato}
+%\usepackage{sectsty}
+\setmainfont[Ligatures=TeX]{Minion Pro}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[document]{ragged2e}
+\usepackage{amsmath}
+\usepackage{tikz}
+
+
+\usepackage{booktabs}
+\usepackage{epigraph}
+%\usepackage{kpfonts}
+\usepackage[notes,
+%autocite=footcite,
+url=false
+]{biblatex-chicago}
+%\addbibresource{biblio.bib}
+%\addbibresource{extra.bib}
+
+%Fix parenthesis
+
+\title{Curvas elípticas y criptografía}
+\subtitle{Exploración Matemática}
+\author{Sergio Ugalde Marcano}
+
+
+\usepackage{paralist}
+\begin{document}
+\maketitle
+\thispagestyle{empty} 
+\begin{flushleft}
+\onehalfspacing
+\setlength{\parindent}{0.5in} 
+\begin{center}
+	\begin{tikzpicture}[domain=-1.769292354238631:2.5, samples at ={-1.769292354238631, -1.76, -1.74, ..., 2.26, 2.35, 2.7, 2.9}]
+	%	\draw[very thin,color=gray] (-2,-4) grid (3,4);
+        \draw[very thin,color=gray] (-1.9,-3.9) grid (3.9,3.9);
+
+		\draw[->] (-2.2,0) -- (3.2,0) node[right] {$x$};
+		\draw[->] (0,-2.2) -- (0,4.2) node[above] {$y$};
+		\draw[->, color=red] plot (\x,{sqrt(\x^3-2*\x+2)}) node[right] {$y^2=x^3-2x+2$};
+		\draw[->, color=red] plot (\x,{-sqrt(\x^3-2*\x+2)}) node[right] {};
+		
+%		\draw[<->, color=blue] (-2.1, 1.75745899181) -- (3.1, 1.75745899181) node[above] {};
+%		\draw[color=blue] (-.816496580928, 1.75745899181) node[above] {$p$};
+%		\draw[color=blue] (-.816496580928, 1.75745899181) node[] {$\bullet$};
+%		\draw[color=blue] (1.63299316186,  1.75745899181) node[above] {$p^\star$};
+%		\draw[color=blue] (1.63299316186,  1.75745899181) node[] {$\bullet$};
+	\end{tikzpicture}
+\end{center}
+\onehalfspacing
+\frenchspacing
+%\nocite{*}
+\end{flushleft}
+%\input{citations}
+\end{document}
