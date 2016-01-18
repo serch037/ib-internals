@@ -1,0 +1,24 @@
+# Criteria A
+
+## Defining the problem 
+My brother, who is  is currently studying Biology as part of his High School, has had some problems understanding the behaviour of ant colonies, as the professor said that they can achieve quite sophisticated behaviour as a group while being relatively simple as individuals. However, he only explained it using the description of their behaviour as stated in their  textbook, which my brother found vague and confusing.  As I had previously read an article describing this phenomenon, I was familiar with the underlying principles, so I decided to make a product to help my brother to understand them in a deeper fashion.
+
+Ants are able to find efficient routes  between their nests and resources by depositing a pheromone that attract other  along their path (this indirect communication between individuals is known as stigmergy), therefore the path leads faster from one location to the other, is the one that receives the highest amount of pheromones and will be more traveled in the future, as some kind of “self-reinforcing” system.  
+
+Summarising, the behaviour of ants corresponds to what is known as “emergent property”, which are features of a system in which complexity arises from the sum of individual, but interacting agents; it could be said that in these scenarios, order arises from chaos. 
+
+## Choosing a solution
+While consulting with my client, he stated that if he could visualise the process via a graphic medium, then that would lead him to understand better the problem. Therefore, I suggested a graphical simulation, as it fits perfectly his initial requirement. After briefly explaining that a simulation models a  real-life phenomenon (in this case a natural one) and may present it in a graphical way, my brother became excited with the idea, and requested me to make it interactive so he could modify the state of the simulation and understand better how it could respond to different inputs in a dynamic way.  
+
+## Rationale for chosen proposal
+I decided to develop the solution in the Processing programming platform for several reasons. First and foremost, it is graphic based, so I wouldn’t need to worry about the underlying and low-level aspect for graphically representing results and could better focus on the simulation itself. Second of all, it uses Java as a programming language and is therefore, both object-oriented, which is a fitting paradigm for a simulation of this nature and multi-platform, so I need not worry if my system is different from his. Third and last, I am familiar and have had experience with both Java and Processing, so the decision came quite naturally to me. 
+
+## Success criteria
+* The simulation should approximate ant colony behaviour
+	* The individual agents should have limited knowledge about their environment
+	* The complexity should arise by the indirect interaction between individuals and not be directly coded, therefore simulating their real-life behaviour. 
+* It should allow the user to modify the simulation parameters (e.g. randomness and affinity)
+	* Via sliders that represent the values  
+* It should allow the user to modify the simulation (i.e. by adding obstacles, food, or pheromones)
+	* By direct interaction (clicking) in the simulation
+* The graphical representation should be clear so that the user understands what is being represented, and the state of the simulation in each cycle. 

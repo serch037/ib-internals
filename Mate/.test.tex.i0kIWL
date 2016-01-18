@@ -42,7 +42,7 @@ url=false
 
 %Fix parenthesis
 
-\title{El problema de la mochila simple}
+\title{Curvas elípticas y criptografía}
 \subtitle{Exploración Matemática}
 \author{Sergio Ugalde Marcano}
 
@@ -53,13 +53,27 @@ url=false
 \thispagestyle{empty} 
 \begin{flushleft}
 \onehalfspacing
-\frenchspacing
 \setlength{\parindent}{0.5in} 
+\begin{center}
+	\begin{tikzpicture}[domain=-1.769292354238631:2.5, samples at ={-1.769292354238631, -1.76, -1.74, ..., 2.26, 2.35, 2.7, 2.9}]
+	%	\draw[very thin,color=gray] (-2,-4) grid (3,4);
+        \draw[very thin,color=gray] (-1.9,-3.9) grid (3.9,3.9);
+
+		\draw[->] (-2.2,0) -- (3.2,0) node[right] {$x$};
+		\draw[->] (0,-2.2) -- (0,4.2) node[above] {$y$};
+		\draw[->, color=red] plot (\x,{sqrt(\x^3-2*\x+2)}) node[right] {$y^2=x^3-2x+2$};
+		\draw[->, color=red] plot (\x,{-sqrt(\x^3-2*\x+2)}) node[right] {};
+		
+%		\draw[<->, color=blue] (-2.1, 1.75745899181) -- (3.1, 1.75745899181) node[above] {};
+%		\draw[color=blue] (-.816496580928, 1.75745899181) node[above] {$p$};
+%		\draw[color=blue] (-.816496580928, 1.75745899181) node[] {$\bullet$};
+%		\draw[color=blue] (1.63299316186,  1.75745899181) node[above] {$p^\star$};
+%		\draw[color=blue] (1.63299316186,  1.75745899181) node[] {$\bullet$};
+	\end{tikzpicture}
+\end{center}
+\onehalfspacing
+\frenchspacing
 %\nocite{*}
-\tableofcontents
-En la vida cotidiana nos enfrentamos con problemas que nos exigen seleccionar entre recursos con distintas propiedades.
-Por ejemplo, cuando empacamos al regresar de un viaje, ocurre frecuentemente que la cantidad de objetos excede la capacidad de carga con la que contamos, entonces nos vemos forzados a elegir entre ellos para descartar los que consideremos menos relevantes.
-Este problema me llamó la atención por ser uno con el que nos encontramos continuamente, pero solemos resolver de manera suboptima, usando herramientas pertenecientes a la intuición o simplemente de manera arbitraria, por ello los resultados obtenidos no siempre son favorables. Por lo tanto, una solución óptima podría sernos de inmensa utilidad en una multiplicidad de campos, dada la diversidad de aplicaciones del problema. 
 \end{flushleft}
 %\input{citations}
 \end{document}

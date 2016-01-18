@@ -76,10 +76,8 @@ spanish=mexican,
 %autocite=footcite,
 url=false
 ]{biblatex-chicago}
-\addbibresource{extra1.bib}
-%\addbibresource{biblio.bib}
-%\addbibresource{extra.bib}
-%\addbibresource{extra1.bib}
+\addbibresource{biblio.bib}
+\addbibresource{extra.bib}
 
 %Fix parenthesis
 
@@ -99,10 +97,6 @@ url=false
 \input{criterioA}
 \input{criterioB}
 \input{criterioC}
-\input{criterioD}
-\input{criterioE}
-
-%\input{criterioC}
 %\nocite{*}
 \pagebreak 
 \printbibliography
