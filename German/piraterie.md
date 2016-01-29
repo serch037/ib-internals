@@ -1,5 +1,7 @@
 # Internet Piraterie
-Trotz alle, dass man über Deutschland sich vorstellt, Internet Piraterie und Raubkopierien sind ganz großen Probleme. Beispielswiese,im Jahr 2013 die  Einnahmeausfälle von Raubkopierter Software war über 2,2 Milliarden US-Dollar (Statista). Aus diesem Grund, hat die Regierung durch die letzen Jahren viele Maße und Gesetze gegen diese Straftat beschließen. Vielleicht die großer unter diesen ist der Abmahnung. Jedoch es hat letzens  in eine Schwere industrie umgewandelt (PCWelt), eigentlich über 500,000 Abmahnungen sind pro Jahr geschickt.
+Trotz alle, dass man über Deutschland sich vorstellt, Internet Piraterie und Raubkopierien sind dorthin ganz großen Probleme. Beispielswiese, im Jahr 2013 die Einnahmeausfälle von Raubkopierter Software war über 2,2 Milliarden US-Dollar (Statista). Aus diesem Grund, hat die Regierung durch die letzen Jahren viele Maße und Gesetze gegen diese Straftat beschließen. Vielleicht die großer unter diesen ist die Abmahnung. Ursprünglich um 2010 realisiert, die Abmahnung ist eine schrifltliche gesetzliche Warnung um "einen Rechtsverstoß zu beseitigen und ihn künftig zu unterlassen".(rechtsanwalt) Normalerweiße, strafwürdige Verstöße spannen von die Nutzung von geschützte Fotos bis das Filesharing von Müsik und Filme. Nattürlich andeutet dieses Dokument einige Anwaltskosten, dennoch sind diesen Kosten nicht so klar definiert. 
+
+Zusätzlich hat  letzens die Abmahnung in eine Schwere industrie umgewandelt (PCWelt), eigentlich über 500,000 Abmahnungen sind pro Jahr geschickt, das meint .
 Logischerweise, es gibt viele die nicht einverstanden damit sein.
 
 Referenzen:
@@ -8,6 +10,8 @@ http://de.statista.com/statistik/daten/studie/190277/umfrage/einnahmeausfaelle-d
 http://www.zeit.de/digital/internet/2015-02/filesharing-abmahnung-gesetz-kosten-deckelung
 
 http://www.pcwelt.de/ratgeber/Die-Abmahnindustrie-Jeden-kann-es-treffen-5802508.html
+
+http://rechtsanwalt-schwenke.de/faq-abmahnung-unerlaubte-bildernutzung/#abmfaq_9
 
 
 Anderen:
@@ -62,3 +66,8 @@ https://netzpolitik.org/2015/die-abmahnindustrie-wie-deutsche-rechtsaenwaelte-ge
 http://www.zeit.de/digital/internet/2015-02/filesharing-abmahnung-gesetz-kosten-deckelung
 
 http://www.pcwelt.de/ratgeber/Die-Abmahnindustrie-Jeden-kann-es-treffen-5802508.html
+
+https://translate.googleusercontent.com/translate_c?act=url&depth=1&hl=en&ie=UTF8&prev=_t&rurl=translate.google.com&sl=auto&tl=en&u=http://www.bild.de/politik/inland/abzocke/anti-abzock-gesetz-tritt-im-sommer-in-kraft-28323648.bild.html&usg=ALkJrhgtbu8zl_6yWiceix7xseuboRE7Rg
+
+https://translate.googleusercontent.com/translate_c?act=url&depth=1&hl=en&ie=UTF8&prev=_t&rurl=translate.google.com&sl=auto&tl=en&u=http://www.bild.de/geld/wirtschaft/internetbetrug/verbraucherschutz-chef-gerd-billen-regierung-verschleppt-anti-abzock-gesetz-23779176.bild.html&usg=ALkJrhhFli3LOecXe4vjq9V-hhPX4v6xGw
+
