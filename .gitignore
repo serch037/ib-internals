@@ -32,7 +32,7 @@
 *.pdfsync
 
 ## Auxiliary and intermediate files from other packages:
-
+*.avi
 
 # algorithms
 *.alg
