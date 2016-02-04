@@ -106,3 +106,22 @@
 
 * Diferencia
     * Esposas apoyan incondicionalmente
+
+# Entrevista YT
+* Marcado por lucha por justicia social
+    * Nuevos medios de lucha (6:15)
+    * Hay conciencia de lucha (6:30)
+* Charro significa hombría y mexicanidad (09:15)
+* Cine más fuerte que metralladrora, fusil (16:09)
+    * Hacer más bien a méxico que con fusilies (16:30)
+* "Etapa comprometedora" con Dolores del Río (22:00)
+* 1943 Flor silvestre
+    * Adaptada, escrita y dirigida (22:49)
+    * Contrato por western, ideas propias
+    * Da versión de México y de revolución mexicana (23:19)
+        * ¿Crítica de excesos de revolucionarios?
+            * Yo no soy crítico, siento las cosas y las hago (23:37)
+* María Candelaria
+    * Éxito más grande (26:50)
+    * Expulsado de compañia por "película de indios"
+    * 
