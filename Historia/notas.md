@@ -107,7 +107,7 @@
 * Diferencia
     * Esposas apoyan incondicionalmente
 
-# Entrevista YT
+# Entrevista YT (Joaquín Soler A fondo)
 * Marcado por lucha por justicia social
     * Nuevos medios de lucha (6:15)
     * Hay conciencia de lucha (6:30)
@@ -124,4 +124,10 @@
 * María Candelaria
     * Éxito más grande (26:50)
     * Expulsado de compañia por "película de indios"
+
+## Parte 2 
+* El cine tiene la función de guiar elevar, educar (5:50)
+
+# El hombre detrás del mito
+* Siempre supo que el cine era su mejor arma, medio para educar(2:44)
     * 
