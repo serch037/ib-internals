@@ -291,4 +291,37 @@
 * Para ser maestro hay que tener madera de santo (20:00)
 * Carta del presidente (23:00)
 	* Agradecimiento, reconocimiento y felicitación personal
-	* "Yo sé cuán grandes y dolorososo han sido los obstáculos que ha tenido que afrontar pero sé  también que solo el interés y la abnegación de mexicanos "
+	* "Yo sé cuán grandes y dolorososo han sido los obstáculos que ha tenido que afrontar pero sé  también que solo el desinterés y la abnegación de mexicanos como usted harán factible la regeneración de nuestro pueblo. Hoy más que nunca debe tener la seguridad de que México y yo estamos con usted y de que sus sacrificios se traducirán en fruto inmediato para la región en la cuál opera en mi representación." (24:04)
+	* Imágen de indígenas con antorchas (24:51)
+
+# Las abandonadas
+Films Mundiales (0:18)
+* Mujer con pendiente de cruz (04:50)
+* Tú ya sabes cómo es la gente de mi clase (04:59)
+* Diferneicas estre clases sociales (07:20)
+* General abuza de fuerza, vioelencia y rango para obtener beneficios en hotel (26:58)
+*  Cierra la puerta para que no sea violada (28:29)
+    * "Ya ves las cosas que pasan en la capital"
+* "Asaltantes en plena ciudad, ojalá y pronto puedas establecer el orden, Juan" (37:22)
+* "Quiera dios y pronto se acabe todo este lío de la revolución" (38:27)
+* "Ha habido días de sombra, de sangre, de los cuales tú no has sabido nada" (47:17)
+    * Regalos frívolos, joyas, casa y collares (53:43)
+* Aprehendido e identidad puesta en tela de juicio (59:13)
+    * "El falso general Juán Gomez [...] llegaron a levantar el campo después de la batalla librada en Hondo, Coahuila"(1:00:35-1:01:19)
+    * Escena de bandidos apropiándose de vestimentas de revolucionarios 
+    * "Aprovechándose del desconcierto que por motivo de la revolución, reinaba en todo el país [...] estos hombres no solo suplantaron la función [...] de otros muestos heróicamente." (1:02:49) (Con águila como fondo)
+* Dramático encarcelamiento de margarita (1:06:50)
+    * Su hijo, arrebatado (1:04:40)
+* Ocho años después 
+    * "Como que todo es nuevo y hasta huele bonito"(1:07:40)
+    * "El pasado es el pasado y eso no se olvida" (1:10:05)
+* La mamá le dice a MArgarito que su madre ha muerto (1:17:24)
+* Duras condicinoes llevan a la mamá a la prostitución (1:22:00)
+    * ¿Cuánto son dos pesos para una quimisa de la división del norte?(1:27:10)
+    * Y a robar también (1:28:40)i
+    * Para pagar el exámen de recepción (1:29:12)
+* "Y para qué eres abojado sino para luchar contra la injusticia que no reconoce otra razón en este  mundo que la infame razón de la clase social privilegiada y el dinero"
+    * Populismo (1:32:40)
+    * Se gana caso de mujer pobre y abusada, por rico y poderoso (1:33:44)
+    * "Ahí está esa madre, esa abandodada, [...], que no ha cometido otro crímen que levantarse contra quien la engañó y  llenó su alma de desesperción hasta armar su mano, su mano simbólica [...] que es la mano de todas las infelicesi de la tierra que se levantan a castigar al verdugo rico,[...]para quien la mujer pobre es solo carne de satisfación y deleite "(1:31:20-1:32:05)
+* Todo el pueblo celebra (1:34:52)

@@ -24,9 +24,10 @@ spanish=mexican,
 %\usepackage{sectsty}
 \setmainfont[Ligatures=TeX]{Minion Pro}
 \usepackage{microtype}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage[document]{ragged2e}
+\usepackage[draft]{todonotes}
 %\usepackage{indentfirst}
 
 %\usepackage{parskip}
@@ -76,15 +77,23 @@ spanish=mexican,
 %autocite=footcite,
 url=false
 ]{biblatex-chicago}
-\addbibresource{extra1.bib}
+%\addbibresource{extra1.bib}
 %\addbibresource{biblio.bib}
 %\addbibresource{extra.bib}
 %\addbibresource{extra1.bib}
 
 %Fix parenthesis
 
-
+\usepackage{afterpage}
 \usepackage{paralist}
+
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
 \begin{document}
 \begin{flushleft}
 \onehalfspacing
@@ -97,15 +106,15 @@ url=false
 \onehalfspacing
 \frenchspacing
 \input{criterioA}
-\input{criterioB}
+%\input{criterioB}
 \input{criterioC}
 \input{criterioD}
-\input{criterioE}
+%\input{criterioE}
 
 %\input{criterioC}
 %\nocite{*}
 \pagebreak 
-\printbibliography
+%\printbibliography
 \end{flushleft}
 %\input{citations}
 \end{document}
