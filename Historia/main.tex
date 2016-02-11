@@ -1,5 +1,5 @@
 
-\documentclass[12pt,letterpaper,oneside,DIV=13]{scrartcl}
+\documentclass[11pt,letterpaper,oneside,DIV=13]{scrartcl}
 \usepackage{paralist}
 \usepackage{ifpdf}
 \usepackage{url}
@@ -20,14 +20,13 @@ spanish=mexican,
 \usepackage[utf8]{inputenc}
 \usepackage{fontspec}
 \usepackage{setspace}
-\setsansfont[Ligatures=TeX]{Lato}
+\setsansfont[Ligatures=TeX]{Arial}
 %\usepackage{sectsty}
 \setmainfont[Ligatures=TeX]{Minion Pro}
 \usepackage{microtype}
 %\usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage[document]{ragged2e}
-\usepackage[draft]{todonotes}
 %\usepackage{indentfirst}
 
 %\usepackage{parskip}
@@ -60,7 +59,6 @@ spanish=mexican,
 %12pt is one-sixth of an inch. Subtract this from 0.5in to get headsep value
 
 
-
 \usepackage{booktabs}
 \usepackage{epigraph}
 
@@ -74,10 +72,14 @@ spanish=mexican,
 %\DeclareFieldAlias{eprint:ECCC}{eprint:eccc}
 
 \usepackage[notes,
-%autocite=footcite,
+autocite=footcite,
 url=false
 ]{biblatex-chicago}
-%\addbibresource{extra1.bib}
+\NewBibliographyString{by}
+\DefineBibliographyStrings{spanish}{by={por}}
+\DefineBibliographyStrings{mexico}{by={por}}
+\addbibresource{RealFinal.bib}
+\addbibresource{entre.bib}
 %\addbibresource{biblio.bib}
 %\addbibresource{extra.bib}
 %\addbibresource{extra1.bib}
@@ -95,7 +97,7 @@ url=false
     \newpage}
 
 \begin{document}
-\begin{flushleft}
+%\begin{flushleft}
 \onehalfspacing
 %Sergio Ugalde Marcano - A01336435\\
 %Monografía II\\
@@ -105,16 +107,18 @@ url=false
 \setlength{\parindent}{0.5in} 
 \onehalfspacing
 \frenchspacing
+\tableofcontents
+\pagebreak
 \input{criterioA}
-%\input{criterioB}
+\input{criterioB}
 \input{criterioC}
 \input{criterioD}
-%\input{criterioE}
+\input{criterioE}
 
 %\input{criterioC}
 %\nocite{*}
 \pagebreak 
-%\printbibliography
-\end{flushleft}
+\printbibliography
+%\end{flushleft}
 %\input{citations}
 \end{document}
