@@ -1,0 +1,119 @@
+\documentclass[12pt,letterpaper,oneside,DIV=13]{scrartcl}
+\usepackage{paralist}
+\usepackage{ifpdf}
+\usepackage{url}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+%Language Settings
+\usepackage[
+    spanish]
+    %english]
+    {babel}
+\usepackage[
+spanish=mexican,
+    %american,
+    autostyle=true]{csquotes}
+
+%\usepackage[authordate]{biblatex-chicago}
+\usepackage{biblatex-chicago}
+\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+\usepackage{setspace}
+\setmainfont[Ligatures=TeX]{Times New Roman}
+%\usepackage{sectsty}
+\setsansfont[Ligatures=TeX]{Arial}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\MakeOuterQuote{"}
+%\usepackage{indentfirst}
+
+%\usepackage{parskip}
+
+% MLA
+%\usepackage[margin=1in]{geometry}
+%\pagestyle{headings}
+%\setlength{\paperheight}{11in}
+%\setlength{\paperwidth}{8.5in}
+%\setlength{\textwidth}{6.5in}
+%\setlength{\textheight}{9in}
+%\setlength{\footskip}{40pt}
+%\setlength{\hoffset}{0in}
+%\setlength{\voffset}{-1in}
+%\setlength{\topmargin}{.5in}
+%\setlength{\headsep}{18pt}
+%\setlength{\headheight}{15pt}
+
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\lhead{}
+%\chead{}
+%\rhead{Ugalde Marcano \thepage}
+%\lfoot{}
+%\cfoot{}
+%\rfoot{}
+%\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\footrulewidth}{0pt}
+%To make sure we actually have header 0.5in away from top edge
+%12pt is one-sixth of an inch. Subtract this from 0.5in to get headsep value
+
+
+\usepackage[headsepline]{scrlayer-scrpage}
+\clearpairofpagestyles
+\ohead{\pagemark}
+\chead{\hspace{20em} 1119-0071}
+\ihead{De la juventud a la adultez \hspace{5em} Sergio Ugalde Marcano}
+
+\renewcommand*\pagemark{{\usekomafont{pagenumber}\nobreakspace\thepage}}
+\addtokomafont{pageheadfoot}{\upshape}
+
+
+
+
+\usepackage{booktabs}
+\usepackage{epigraph}
+\usepackage{listings}
+
+\usepackage[
+%    style=mla
+     style=chicago-notes,
+     url=false
+    ]{biblatex}
+%\DeclareFieldAlias{eprint:ECCC}{eprint:eccc}
+\addbibresource{biblio.bib}
+
+%Fix parenthesis
+
+%\usepackage{xpatch}
+%\xpatchbibdriver{online}
+  %{\printtext[parens]{\usebibmacro{date}}}
+  %{\iffieldundef{year}
+    %{}
+    %{\printtext[parens]{\usebibmacro{date}}}}
+  %{}
+  %{\typeout{There was an error patching biblatex-ieee (specifically, ieee.bbx's @online driver)}}
+
+
+\usepackage{appendix}
+\usepackage[toc,page]{appendix}
+\usepackage{abstract}
+\begin{document}
+%\begin{flushleft}
+\onehalfspacing
+%Sergio Ugalde Marcano - A01336435\\
+%Monografía II\\
+%Bachillerato Internacional - Prepa Tec\\
+%\today\\
+%Título
+\setlength{\parindent}{0.5in}
+\onehalfspacing
+\frenchspacing
+%\input{abstract}
+\input{intro}
+%\nocite{*}
+\printbibliography
+%\input{append}
+%\end{flushleft}
+\end{document}
