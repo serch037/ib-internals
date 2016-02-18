@@ -1,42 +1,39 @@
 # Criterio B
 
 ## Solución propuesta
-Los representantes de Educas y yo, consideramos la creación de una base de datos como una solución apropiada para los problemas con los que cuentan. Además, esta será sincronizada por la nube para que todos los miembros tengan acceso a la misma. 
+Mi cliente Karla y yo, consideramos que la creación de una base de datos sería una solución apropiada para los problemas con los que cuenta EduCAS, ya que permitirá consolidar la información del curso de una manera organizada y accesible.
 
 ## Especificación de requisitos
 
 ### Requisitos del sistema TI 
-* Hardware: PC o Mac (véase los detalles en requerimientos de software), con un procesador de mínimo 1GHz y 64 o 32 bits. Asimismo, se necesitará como mínimo un gigabyte de memoria RAM en los sistemas de 32 bits, y 2 gigabytes en los de 64 y tres gigabytes de espacio libre en disco (especificaciones oficiales de Office 2013). Finalmente, el acceso a internet es de vital importancia para el proyecto. 
-* Software: Windows, por lo menos en su versión 7, para las computadoras Mac, se les puede proveer con una solución virtualizada. El usuario debe contar con MS Access (por lo menos 2007), una versión reciente de .NET (por lo menos 3.5) y algúna aplicación de sincronización por la nube, como OneDrive.  
+* Hardware: PC o Mac (véase los detalles en requerimientos de software), con un procesador de mínimo 1GHz y 64 o 32 bits. Asimismo, se necesitará como mínimo un gigabyte de memoria RAM en los sistemas de 32 bits, y 2 gigabytes en los de 64 y tres gigabytes de espacio libre en disco (especificaciones oficiales de Office 2013). 
+* Software: Windows, por lo menos en su versión 7. Para las computadoras Mac, se les puede proveer con una solución virtualizada como el Laboratorio Virtual que ofrecido por el ITESM. El usuario debe contar con MS Access (por lo menos 2007) y una versión reciente de .NET (por lo menos 3.5).  
 
 ### Interacción del sistema
-* El sistema puede ser auto-contenido en Windows siempre y cuando esté disponible una opción de sincronización con la nube, y virtualización de software para los usuarios cuyo sistema operativo es incompatible con Access.
+* El sistema puede ser auto-contenido en Windows, y la interacción se dará completamente dentro de la aplicación a través de las formas de MS Access.
 
 ### Requisitos de entrada y salida 
-* Entrada: Nombres e información adicional sobre los alumnos (contactos de emergencia, nombre de tutores, etc.), asistencia, desempeño, nombre de maestros, materias, y días de disponibilidad. 
-* Salida: Estadísticas de asistencia y reportes sobre la calificación en promedio de los alumnos, así como información accesible sobre los mismos. 
+* Entrada: Nombres e información sobre los alumnos (contactos de emergencia, nombre de tutores, etc.), asistencia, nombre de maestros, materias, y días de disponibilidad. 
+* Salida: Información sobre la asistencia, los alumnos, los cursos y los profesores organizada de distintas maneras. 
 
 ### Procesamiento
-* Para las funciones descritas en el punto anterior, será necesario la elaboración de tablas pertinentes, las relaciones entre ellas y  como formas para la sencilla edición de las mismas. Sería importante incluir queries como paso intermedio para la entrega de reportes y diversas formas de búsqueda por parámetro, como nombre del alumno, materia o profesor. 
+* Para las funciones descritas en el punto anterior, será necesario la elaboración de tablas relacionales pertinentes, y  como formas para la sencilla edición e interacción con la base de datos. Por esto mismo será necesario diseñar Queries que permitan recolectar la información de manera dinámica e interactiva por medio de parámetros definidos por el ususario. 
 
 ### Seguridad
-* Sincronización con la nube como primer recurso contra la pérdida de datos.
-* Copias locales de la información
-* Creación de “usuarios” con distintos privilegios de edición limitados a ciertas partes de la base de datos a la que accederán con contraseñas personales. 
+* Copias locales de la información tomadas de manera semanal
+* Protección de la base de datos mediante una contraseña
 
 ## Criterios de rendimiento específicos
 * La base de datos debe contar con lo siguiente
-	* Contraseñas por usuario para limitar las secciones en que cada uno puede editar
 	* Búsquedas que permitan el rápido acceso a la información
 	* Formas efectivas, cuyo diseño permita un uso intuitivo.
-	* Flexibilidad suficiente, o capacitación necesaria para su uso a largo plazo.
-	* Reportes que ofrezcan un resumen de la información más relevante del mes. 
-	* Integración con un servicio de sincronización en la nube
+	* Fácil registro de los datos. 
+	* Organización efectiva en las tablas relacionales
 
 ## Justificación de la solución propuesta 
-Una base de datos, correctamente implementada, me parece  una solución pertinente para los conflictos que implica el crecimiento del proyecto Educas, puesto que es una herramienta más sólida que las herramientas de cálculo de Excel para el almacenamiento a largo plazo de la información, e integra herramientas que resultan más pertinentes para el control de la misma, como las formas, los queries, o los reportes. 
-La posibilidad, que fue considerada junto con el equipo de Educas, de reutilizar las tablas de Excel fue rechazada debido a su inefectividad en mantener los datos de forma adecuada, y ausencia de sofisticación en cuanto a la abstracción que permite en las relaciones entre la información. Consideramos que una implementación similar en Excel tendría menos integridad, y debido a la redundancia de datos a la que podría llevar, un producto confuso y menos apropiado. 
+Una base de datos, correctamente implementada, me parece  una solución pertinente para los conflictos que acarrea el crecimiento reciente del proyecto Educas, que como identificaron mis clientes, se reducen a cuestiones de logística interna. Como Access ofree herramientas más sólidas que de las hojas de cálculo de Excel para el almacenamiento a largo plazo de la información y para un gran número de registros; además, integra funcionalidades que resultan más pertinentes para el control de la base de datos, como las formas, los queries, o los reportes. 
+La posibilidad, que fue considerada junto con el equipo de EduCAS, de reutilizar las tablas de Excel fue rechazada debido a su inefectividad en mantener los datos de forma adecuada, y ausencia de sofisticación en cuanto a la abstracción que permite en las relaciones entre los datos. Consideramos que una implementación similar en Excel tendría menos integridad, y debido a la redundancia de datos a la que podría llevar, un producto confuso y menos apropiado. Por otro lado, una base de datos como las utilizadas en Access permiten organizar la información mediante tablas relacionales, que reducen la redundancia de datos y facilitan el mantenimiento de la integridad de la información. Asímismo, el sistema de formas que ofrece puede servir como un medio para desarollar una interfaz de usuario, lo cual incrementaría considerablemente la facilidad de uso con respecto a ingresar los datos en una cuadrícula. 
 
-Escogimos sincronizar la base de datos con la nube, porque mis compañeros cuentan con equipos en distintas plataformas, algunos requerirán un software de virtualización del sistema operativo para que sean compatibles con el software que se requiere (Windows 7 o mayor). Esto es porque necesitamos que sea compatible con versiones de MS Access iguales o mayor a 2013, por su facilidad de uso a comparación de versiones anteriores y los requerimientos que elegimos fueron los mínimos necesarios que recomienda Microsoft para la suite de 2013. 
-(255 palabras)
+Después, consideramos los requerimientos de Access y nos percatamos que el equipo con el que cuentan mis compañeros, así como las computadoras de trabajo que ofrece el campus, tienen las características adecuadas para correr Access, ya que estos no son muy estrictos pues solo se necesita una computadora con Windows 7 o superior, la suite 2010 de Office o superior, y entre uno y dos megabytes de RAM dependiendo del sistema.  
+(301 palabras)
 
