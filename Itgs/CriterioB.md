@@ -25,10 +25,12 @@ Mi cliente Karla y yo, consideramos que la creación de una base de datos sería
 
 ## Criterios de rendimiento específicos
 * La base de datos debe contar con lo siguiente
-	* Búsquedas que permitan el rápido acceso a la información
-	* Formas efectivas, cuyo diseño permita un uso intuitivo.
-	* Fácil registro de los datos. 
-	* Organización efectiva en las tablas relacionales
+    * Búsquedas que permitan el rápido acceso a la información deseada por el usuario
+    * Formas efectivas, cuyo diseño permita el ingreso sencillo de datos.
+    * Uso de menús y pestañas para organizar y navegar en la base de datos
+    * Uso de botones para simplificar acciones 
+    * Organización efectiva en las tablas relacionales
+    * Toma de asistencia por curso y por fecha (como parámetros) 
 
 ## Justificación de la solución propuesta 
 Una base de datos, correctamente implementada, me parece  una solución pertinente para los conflictos que acarrea el crecimiento reciente del proyecto Educas, que como identificaron mis clientes, se reducen a cuestiones de logística interna. Como Access ofree herramientas más sólidas que de las hojas de cálculo de Excel para el almacenamiento a largo plazo de la información y para un gran número de registros; además, integra funcionalidades que resultan más pertinentes para el control de la base de datos, como las formas, los queries, o los reportes. 
