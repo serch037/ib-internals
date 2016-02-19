@@ -32,6 +32,8 @@ Mi cliente Karla y yo, consideramos que la creación de una base de datos sería
     * Organización efectiva en las tablas relacionales
     * Toma de asistencia por curso y por fecha (como parámetros) 
     * Interfáz sencilla de usar y navegar
+    * Validación de datos para evitar errores al ingresar datos
+    * Medidas para mantener la integridad de la base de datos
 
 ## Justificación de la solución propuesta 
 Una base de datos, correctamente implementada, me parece  una solución pertinente para los conflictos que acarrea el crecimiento reciente del proyecto Educas, que como identificaron mis clientes, se reducen a cuestiones de logística interna. Como Access ofree herramientas más sólidas que de las hojas de cálculo de Excel para el almacenamiento a largo plazo de la información y para un gran número de registros; además, integra funcionalidades que resultan más pertinentes para el control de la base de datos, como las formas, los queries, o los reportes. 
