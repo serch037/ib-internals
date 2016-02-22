@@ -6,7 +6,8 @@
 *.fls
 *.out
 *.toc
-
+*.mp4
+*.mov
 ## Intermediate documents:
 *.dvi
 *-converted-to.*
