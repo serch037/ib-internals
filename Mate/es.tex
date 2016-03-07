@@ -133,8 +133,25 @@ sn edges/.style={for tree={edge={->}}}
 \usepackage{algorithm}
 %\usepackage{algpseudocode,algorithm,algorithmicx}  
 \usepackage{algpseudocode}
+\usepackage{float}
 %\usepackage{algorithmicx}
 \input{spanishAlgorithmic} % mi archivo de traducción
+\newsavebox\mybox
+\savebox\mybox{%
+  \tikz{
+    \draw[ultra thick,red] (-4pt,-4pt) -- (4pt,4pt);
+    \draw[ultra thick,red] (-4pt,4pt) -- (4pt,-4pt);
+  }%
+}  
+\tikzset{
+myedge/.style={
+  decoration={
+   markings,
+   mark=at position 0.5 with \node {\usebox\mybox};
+  },
+  postaction=decorate
+  }
+}
 \begin{document}
 %\begin{flushleft}
 \onehalfspacing

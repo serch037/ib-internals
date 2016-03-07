@@ -191,7 +191,8 @@ sn edges
 ]
 \end{forest}
 }
-\caption{Árbol de decisiones del juego $\gamma_{1}$}
+\caption{Árbol de decisiones del juego $\gamma_{1}$\label{figurasimple}}
+
 
 \end{figure}
 
@@ -544,8 +545,357 @@ Para explorar este procedimiento en distintos contextos, lo trasladé al siguien
   \EndIf
 \EndProcedure
 \end{algorithmic}
-\caption{MiniMax}\label{alg:MiniMax}
+\caption{MiniMax\label{alg:MiniMax}}
 \end{algorithm}
 
 Posteriormente programé un pequeño código en Java diseñado para jugar juegos \emph{m,n,k} utilizando este algoritmo ya sea contra sí mismo o contra un humano. El programa reporta diversos registros del algoritmo, entre ellos, el número de nodos en el árbol construido. 
+
+Los resultados que obtuve corriendo el algoritmo en un juego de gato fueron los siguientes:
+
+
+\begin{center}
+\begin{tabular}{ | l | l | } 
+\hline
+Turno & Número de nodos  \\ 
+\hline
+0 & 549946 \\ 
+\hline
+1 & 59705 \\ 
+\hline
+2 & 7332 \\ 
+\hline
+3  & 6935 \\ 
+\hline
+4 & 198 \\ 
+\hline
+5 & 47 \\ 
+\hline
+6 & 14 \\ 
+\hline
+7 & 5 \\ 
+\hline
+8 & 2 \\ 
+\hline
+9 & 1 \\ 
+\hline
+\end{tabular}
+\end{center}
+
+Sin embargo, si analizamos la manera en que el algoritmo Minimax transversa el árbol de juego, podríamos percatarnos de que en ocasiones perdemos tiempo y recursos explorando algunos aristas. Para demostrar esto, reestablecí los valores de prueba del juego $\gammma_{1}$, en otro hipotético juego ilustrativo $\gammma_{2}$, visualizemos su siguiente arbol de juego: 
+
+
+\begin{figure}[h]
+\centering
+\scalebox{0.95}
+{
+\begin{forest}
+sn edges
+[$v_{1}$,rectangle,draw
+    [$v_{2}$,circle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{1}$}}
+        [$v_{4}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{3}$}}
+            [-19, 
+            %regular polygon,draw, 
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{9}$}}
+            ]
+            [10, 
+            %regular polygon,draw,
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{10}$}}]
+            [-18, 
+            %regular polygon,draw,  
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{11}$}}]
+        ]
+        [$v_{5}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{4}$}}
+            [14, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{12}$}}
+            ]
+            [1, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{13}$}}]
+            [-15, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{14}$}}]
+        ]
+        [$v_{6}$,rectangle,draw, edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{5}$}}
+            [-14, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{15}$}}
+            ]
+            [14, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{16}$}}
+            ]
+            [2, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{17}$}}
+            ]
+        ]
+    ]
+    [$v_{3}$,circle,draw, edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{2}$}}
+        [$v_{7}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{6}$}}
+            [-2, 
+             edge label={node[midway,below =1mm,font=\scriptsize]{$e_{18}$}}
+            %regular polygon,draw
+            ]
+            [-5, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{19}$}}
+            ]
+            [-20, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{20}$}}
+            ]
+        ]
+        [$v_{8}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{7}$}}
+            [14, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{21}$}}
+            ]
+            [-8, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{22}$}}
+            ]
+            [-5, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{23}$}}
+            ]
+        ]
+        [$v_{9}$,rectangle,draw, edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{8}$}}
+            [-1, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{24}$}}
+            ]
+            [17, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{25}$}}
+            ]
+            [\infty, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{26}$}}
+            ]
+        ]
+    ]
+    %[\phantom{1},circle,draw%, edge label={node[midway,right= 68mm,above= 3mm, font=\scriptsize]{MAX}}
+    %    [\phantom{1},rectangle,draw
+    %        [3, regular polygon,draw]
+    %        [7, regular polygon,draw]
+    %        [2, regular polygon,draw]
+    %    ]
+    %    [\phantom{1},rectangle,draw
+    %        [7, regular polygon,draw]
+    %        [6, regular polygon,draw]
+    %        [5, regular polygon,draw]
+    %    ]
+    %    [\phantom{1},rectangle,draw%, edge label={node[midway,right= 27mm,above= 3mm, font=\scriptsize]{MIN}}
+    %        [9, regular polygon,draw]
+    %        [8, regular polygon,draw]%, edge ={line width=1.5pt}]
+    %        [9 ,  regular polygon,draw %edge label={node[midway,right= 15mm,above= 3mm, font=\scriptsize]{MAX}}
+    %        ]
+    %    ]
+    %]
+]
+\end{forest}
+}
+\caption{Árbol de decisiones del juego $\gamma_{2}$\label{figurasimple1}}
+
+\end{figure}
+
+\section{Poda alfa-beta}
+Si seguimos cuidadosamente el progreso del algoritmo, podemos percatarnos de que a pesar de que el último nodo tiene un valor extremadamente alto, no hay nada que el jugador que maximiza pueda hacer para obtener este valor, de hecho, ya que el jugador que minimiza se expone a ceder perder una mayor cantidad de puntos en cualquier otra posición, podemos sencillamente cortar o \emph{podar} los aristas $e_{7}$ y $e_{8}$ y obtener el siguiente trabajo resumido: 
+
+\begin{figure}[h]
+\centering
+\scalebox{0.95}
+{
+\begin{forest}
+sn edges
+[$v_{1}$,rectangle,draw
+    [$v_{2}$,circle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{1}$}}
+        [$v_{4}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{3}$}}
+            [-19, 
+            %regular polygon,draw, 
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{9}$}}
+            ]
+            [10, 
+            %regular polygon,draw,
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{10}$}}]
+            [-18, 
+            %regular polygon,draw,  
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{11}$}}]
+        ]
+        [$v_{5}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{4}$}}
+            [14, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{12}$}}
+            ]
+            [1, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{13}$}}]
+            [-15, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{14}$}}]
+        ]
+        [$v_{6}$,rectangle,draw, edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{5}$}}
+            [-14, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{15}$}}
+            ]
+            [14, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{16}$}}
+            ]
+            [2, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{17}$}}
+            ]
+        ]
+    ]
+    [$v_{3}$,circle,draw, edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{2}$}}
+        [$v_{7}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{6}$}}
+            [-2, 
+             edge label={node[midway,below =1mm,font=\scriptsize]{$e_{18}$}}
+            %regular polygon,draw
+            ]
+            [-5, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{19}$}}
+            ]
+            [-20, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{20}$}}
+            ]
+        ]
+        [$v_{8}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{7}$}},
+        edge={myedge}
+            [14, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{21}$}}
+            ]
+            [-8, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{22}$}}
+            ]
+            [-5, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{23}$}}
+            ]
+        ]
+        [$v_{9}$,rectangle,draw, edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{8}$}}, edge={myedge}
+            [-1, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{24}$}}
+            ]
+            [17, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{25}$}}
+            ]
+            [\infty, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{26}$}}
+            ]
+        ]
+    ]
+    %[\phantom{1},circle,draw%, edge label={node[midway,right= 68mm,above= 3mm, font=\scriptsize]{MAX}}
+    %    [\phantom{1},rectangle,draw
+    %        [3, regular polygon,draw]
+    %        [7, regular polygon,draw]
+    %        [2, regular polygon,draw]
+    %    ]
+    %    [\phantom{1},rectangle,draw
+    %        [7, regular polygon,draw]
+    %        [6, regular polygon,draw]
+    %        [5, regular polygon,draw]
+    %    ]
+    %    [\phantom{1},rectangle,draw%, edge label={node[midway,right= 27mm,above= 3mm, font=\scriptsize]{MIN}}
+    %        [9, regular polygon,draw]
+    %        [8, regular polygon,draw]%, edge ={line width=1.5pt}]
+    %        [9 ,  regular polygon,draw %edge label={node[midway,right= 15mm,above= 3mm, font=\scriptsize]{MAX}}
+    %        ]
+    %    ]
+    %]
+]
+\end{forest}
+}
+\caption{Árbol de decisiones del juego $\gamma_{2}$ medianamente podado\label{figurasimple2}}
+
+\end{figure}
+
+A este procedimiento se le conoce como \emph{poda alfa-beta}, debido a que utiliza los valores $\alpha$ y $\beta$ del algoritmo Minimax\ref{MiniMax} para definir los puntos quiebre en el proceso recursivo del mismo. Concretamente, podemos redefinir a la variable $\alpha$ como la cota máxima inferior de los valores del subárbol, mientras que  $\beta$ representa la cota mínima superior de este\autocite{bruce_cs_}. Estos valores son actualizados con cada recursión del algoritmo hasta que $\beta \leq \alpha$. 
+
+\clearpage
+Para comparar este procedimiento con el algoritmo Minimax\ref{MiniMax}, decidí programarlo como una función alternativa en mi pequeño programa de la siguiente manera: 
+
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{AlpfaBeta}{Nodo n, Booleano JuegaComputadora, Número $\alpha$, Número $\beta$}
+  \If{n es terminal}
+  \If{Gana computadora}
+  \State \Return 10
+  \ElsIf{Gana humano}
+  \State \Return -10
+  \Else
+  \State \Return  0
+  \EndIf
+  \Else
+  \If{JuegaComputadora $=verdadero$}
+  \ForAll{arista $e'$ en $c(e_{n})$}
+  \State puntuación = $\argmax{x}$ MiniMax$(e', falso, \alfa, \beta)$
+  \If{puntuación $> \alpha$}
+  $\alpha = puntuación$
+  \EndIf
+  \If{$\alpha \geq \beta$}
+  \Break
+  \EndIf
+  \EndFor
+  \State \Return  $\alpha$
+  \Else
+  \ForAll{arista $e'$ en $c(e_{n})$}
+  \State $\puntuación= \argmin{x}$ MiniMax$(e', verdadero, \alfa, \beta)$
+  \If{puntuación $< \beta$}
+  $\beta = puntuación$
+  \EndIf
+  \If{$\alpha \geq \beta$}
+  \Break
+  \EndIf
+  \EndFor
+  \State \Return  $\beta$
+  \EndIf
+  \EndIf
+\EndProcedure
+\end{algorithmic}
+\caption{MiniMax\label{alg:MiniMax}}
+\end{algorithm}
+
+Al correr este algoritmo contra sí mismo en un juego simple de gato, obtuve los siguientes resultados:
+
+\begin{center}
+\begin{tabular}{ | l | l | } 
+\hline
+Turno & Número de nodos  \\ 
+\hline
+0 & 549946 \\ 
+\hline
+1 & 59705 \\ 
+\hline
+2 & 7332 \\ 
+\hline
+3  & 6935 \\ 
+\hline
+4 & 198 \\ 
+\hline
+5 & 47 \\ 
+\hline
+6 & 14 \\ 
+\hline
+7 & 5 \\ 
+\hline
+8 & 2 \\ 
+\hline
+9 & 1 \\ 
+\hline
+\end{tabular}
+\end{center}
+
+\section{Análisis de complejidad asintótica}
+Para determinar la función de crecimiento de los algoritmos y determinar la magnitud de optimización entre Alfa-beta y Minimax, decidí graficar el número de nodos visitados en cada turno de juego. 
 
