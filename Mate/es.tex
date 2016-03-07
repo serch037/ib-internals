@@ -6,11 +6,13 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+
 %Language Settings
 \usepackage[
     spanish]
     %english]
     {babel}
+    \selectlanguage{spanish} 
 \usepackage[
 spanish=mexican,
     %american,
@@ -18,7 +20,7 @@ spanish=mexican,
 
 %\usepackage[authordate]{biblatex-chicago}
 \usepackage{biblatex-chicago}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
 \usepackage{fontspec}
 \usepackage{setspace}
 \setmainfont[Ligatures=TeX]{Arial}
@@ -26,14 +28,12 @@ spanish=mexican,
 \setsansfont[Ligatures=TeX]{Times New Roman}
 \usepackage{microtype}
 \usepackage{hyperref}
-\usepackage{enumitem}
 \usepackage{tikz}
 \usepackage{forest}
 \usetikzlibrary{calc}
 \usetikzlibrary{shapes}
 \usetikzlibrary{decorations.markings}
 \usetikzlibrary{shadows,arrows.meta}
-\MakeOuterQuote{"}
 %\usepackage{indentfirst}
 
 %\usepackage{parskip}
@@ -65,7 +65,7 @@ spanish=mexican,
 %To make sure we actually have header 0.5in away from top edge
 %12pt is one-sixth of an inch. Subtract this from 0.5in to get headsep value
 
-
+\usepackage{amsmath}
 \usepackage[headsepline]{scrlayer-scrpage}
 \clearpairofpagestyles
 \ohead{Sergio Ugalde Marcano}
@@ -77,18 +77,18 @@ spanish=mexican,
 
 
 
-
+biblio.
 \usepackage{booktabs}
 \usepackage{epigraph}
 \usepackage{listings}
 
 \usepackage[
-%    style=mla
+%%    style=mla
      style=chicago-notes,
      url=false
     ]{biblatex}
 %\DeclareFieldAlias{eprint:ECCC}{eprint:eccc}
-%\addbibresource{biblio.bib}
+\addbibresource{biblio.bib}
 
 %Fix parenthesis
 
@@ -102,9 +102,39 @@ spanish=mexican,
   %{\typeout{There was an error patching biblatex-ieee (specifically, ieee.bbx's @online driver)}}
 
 
-\usepackage{appendix}
-\usepackage[toc,page]{appendix}
-\usepackage{abstract}
+%\usepackage{appendix}
+%\usepackage[toc,page]{appendix}
+%\usepackage{abstract}
+
+\forestset{
+sn edges/.style={for tree={edge={->}}}
+}
+
+\usepackage{enumitem}
+%\usepackage[norelsize, linesnumbered, ruled, lined, boxed, commentsnumbered]{algorithm2e}
+\newcommand{\argmax}[1]{\underset{#1}{\operatorname{\mathsf{arg}}\,\operatorname{\mathsf{max}}}\;}
+\newcommand{\argmin}[1]{\underset{#1}{\operatorname{\mathsf{arg}}\,\operatorname{\mathsf{min}}}\;}
+\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+\setenumerate{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+
+%\usepackage{algpseudocode,algorithm,algorithmicx}  
+%\makeatletter
+%\renewcommand{\ALG@name}{Algoritmo}
+%\algrenewcommand\algorithmicwhile{\textbf{mientras}}
+%\algrenewcommand\algorithmicdo{\textbf{haz}}
+%\algrenewcommand\algorithmicif{\textbf{si}}
+%\algrenewcommand\algorithmicend{\textbf{fin}}
+%\algrenewcommand\algorithmicto{\textbf{para}}
+%\renewcommand{\algorithmicto}{\textbf{para}}
+%\renewcommand{\Procedure}{\textbf{procedimiento}}
+%\algrenewcommand\Procedure[1]{\textbf{procedimiento} #1}
+%\makeatother
+
+\usepackage{algorithm}
+%\usepackage{algpseudocode,algorithm,algorithmicx}  
+\usepackage{algpseudocode}
+%\usepackage{algorithmicx}
+\input{spanishAlgorithmic} % mi archivo de traducción
 \begin{document}
 %\begin{flushleft}
 \onehalfspacing
@@ -116,10 +146,15 @@ spanish=mexican,
 \setlength{\parindent}{0.5in}
 \onehalfspacing
 \frenchspacing
+
+
+
 %\input{abstract}
+
+
 \input{intro}
 %\nocite{*}
-%\printbibliography
+\printbibliography
 %\input{append}
 %\end{flushleft}
 \end{document}

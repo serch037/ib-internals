@@ -1,6 +1,6 @@
-\normalsize
 \Large{\textbf{Análisis de la complejidad computacional del algoritmo Minimax en el algoritmo \emph{juego m,n,k}}}
 
+\normalsize
 \section{Introducción}
 El juego es parte fundamental de las sociedades y las culturas del hombre.
 Naturalmente existen de diversos tipos, pero lo que todos tienen en común es el
@@ -68,29 +68,23 @@ Para que un juego deba considerarse de suma cero, esta propiedad debe mantenerse
 \forall s \in S, \sum_{a=1}^{n}{u_{i_{1}}(s)}+{u_{i_{2}}(s)}=0
 \end{equation}
 
-O, en otras palabras, en todo juego posible, la utilidad final de un jugador cancela la del otro, o que exactamente lo que uno gana, pierde el otro.
+En otras palabras, en todo juego posible, la utilidad final de un jugador cancela la del otro, o que exactamente lo que uno gana, pierde el otro.
 
-En consecuencia, la estrategia óptima de cada jugador intenará maximizar su propia ganancia minimizando la de su contrincante, ese es el núcleo de la estrategia minimax. Y su principal utilidad es que por medio de esta, el jugador $i_{x}$ puede garantizar su utilidad mínima de manera independiente de la estrategia de su adversario, en otras palabras, prepararse adecuadamente para el peor escenario (uno en el cuál compita contra otro jugador óptimo).
+\section{La estrategia minimax}
+En consecuencia de lo anterior, la estrategia óptima de cada jugador intenará maximizar su propia ganancia minimizando la de su contrincante, ese es el núcleo de la estrategia minimax. Y su principal utilidad es que por medio de esta, el jugador $i_{x}$ puede garantizar su utilidad mínima de manera independiente de la estrategia de su adversario, en otras palabras, prepararse adecuadamente para el peor escenario (uno en el cuál compita contra otro jugador óptimo).
 
 Para visualizarla, es conveniente utilizar un grafo dirigido representando las posibles decisiones decisiones de los jugadores, formalmente conocido como o arbol de juego, en donde cada arista representa una decisión, y cada vértice un estado de juego. 
 
 
-Por ejemplo, supongamos que un juego secuencial de información perfecta y  dos jugadores, $\gamma$, tiene el siguiente arbol dirigido, $G = (V,E)$, cuyo conjunto de vértices $V$, representa los  estados posibles del juego, $S(\gamma)$. Los cuadrados y círulos en los vértices representan respectivamente, momentos en los  que los jugadores $i_{1}$ e $i_{2}$ deben realizar una jugada. 
-Estas acciones son representadas en el grafo por el conjunto de aristas $E$. Como el juego se da por turnos, cada decisión contiene el subgrafo resultante $H_{s}(V',E') \in G$, donde $E'$ representa las posibles acciones del jugador y $V'$, el estado del juego después de dicha acción. Y los números, ubicados en nodos terminales --donde acaba el juego--, representan la utilidad $u(s)$ del estado $s$ después de la acción $e_{x}$. 
+Por ejemplo, supongamos que un juego secuencial de información perfecta y  dos jugadores, $\gamma_{1}$, tiene el siguiente arbol dirigido, $G = (V,E)$, cuyo conjunto de vértices $V$, representa los  estados posibles del juego, $S(\gamma_{1})$. Los cuadrados y círulos en los vértices representan respectivamente, momentos en los  que los jugadores $i_{1}$ e $i_{2}$ deben realizar una jugada. 
+Estas acciones son representadas en el grafo por el conjunto de aristas $E$. Como el juego se da por turnos, cada decisión contiene el subgrafo resultante $H_{s}(V',E') \in G$, donde $E'$ representa las posibles acciones del jugador y $V'$, el estado del juego después de dicha acción. Y los números, ubicados en nodos terminales --donde acaba el juego--, representan la utilidad $u(s)$ del jugador $i_{1}$\footnote{Como es un juego de suma cero, la utilidad del jugador $i_{2}$ sería sencillamente el inverso aditivo de la utilidad del jugador $i_{2}$, o en la gráfica $-u(s)$}. 
 
 \begin{figure}[h]
 \centering
 \scalebox{0.95}
 {
 \begin{forest}
-for tree={%
-%node options={draw,font=\sffamily},
-edge={->,line width=.5pt},
-if n children=0{
-%calign secondary angle=90, calign primary angle=90
-calign=fixed edge angles,
-}{}
-}
+sn edges
 [$v_{1}$,rectangle,draw
     [$v_{2}$,circle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{1}$}}
         [$v_{4}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{3}$}}
@@ -197,28 +191,22 @@ calign=fixed edge angles,
 ]
 \end{forest}
 }
-\caption{Árbol de decisiones del juego $\gamma$}
+\caption{Árbol de decisiones del juego $\gamma_{1}$}
 
 \end{figure}
 
-Naturalmente, como comentamos con anterioridad, cada jugador --asumiendo que racionales (con la implicación de que como se encuentran en un juego de información perfecta, son capaces de visualizar el arbol anterior)--, intentará obtener el puntaje mayor reduciéndo el de su oponente para asegurar un puntaje mayor dentro de los puntajes mínimos seleccionados por su contrincante, a este puntaje se le conoce como el valor $minimax$ del nodo. 
+Naturalmente, como comentamos con anterioridad, cada jugador intentará obtener el puntaje mayor, lo que reducirá el de su oponente. De esta manera, podrá asegurar un puntaje mayor dentro de los puntajes mínimos seleccionados por su contrincante, a este puntaje se le conoce como el valor $minimax$ del nodo. 
 
-\clearpage
-Un juego así se desarrollaría de la siguiente manera: 
+Esta estrategia utiliza el método de \emph{inducción hacia atrás}, por medio de la cual los jugadores visualizan el arbol de juego y comienzan analizándolo por los estados terminales del juego, construyendo un vector estrategia que maximice su  puntuación considerando que su oponente jugará perfectamente. 
+
+Para visualizar este proceso, podemos observar el siguiente arbol, que representa el mismo juego hipotético anterior, pero ahora resaltando la estrategia óptima de los jugadores: 
 
 \begin{figure}[h]
 \centering
 \scalebox{0.95}
 {
 \begin{forest}
-for tree={%
-%node options={draw,font=\sffamily},
-edge={->,line width=.5pt},
-if n children=0{
-%calign secondary angle=90, calign primary angle=90
-calign=fixed edge angles,
-}{}
-}
+sn edges
 [$v_{1}$,rectangle,draw
     [$v_{2}$,circle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{1}$}}
         [$v_{4}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{3}$}}
@@ -325,11 +313,316 @@ calign=fixed edge angles,
 ]
 \end{forest}
 }
-\caption{Jugadas óptimas $minimax$ del juego $\gamma$}
+\caption{Jugadas óptimas $minimax$ del juego $\gamma_{1}$}
 
 \end{figure}
+Paso por paso, lo que sucede es lo siguiente: el jugador $i_{1}$ visualiza sus movimientos posibles al inicio del juego y los representa en un árbol como el conjunto de aristas:
+\begin{enumerate}
+\item $c(v_{1}) = \{e_{1}, e_{2}\}$
+\end{enumerate}
+De ahí, visualiza las respuestas posibles de su contrincante $i_{2}$ según sus jugadas en los conjuntos de segundo nivel: 
+\begin{enumerate}
+\item $c(v_{1}) = \{e_{1}, e_{2}\}$
+	\begin{enumerate}
+	\item $c(e_{1}) = \{e_{3}, e_{4}, e_{5}\}$ 
+	\item $c(e_{2}) = \{e_{6}, e_{7}, e_{8}\}$
+	\end{enumerate}
+\end{enumerate}
+Finalmente, en un tercer nivel, visualiza los movimientos posibles a partir de los conjuntos anteriores y, siendo movimientos terminales, observa su ganancia o utilidad: 
+\begin{enumerate}
+\item $c(v_{1}) = \{e_{1}, e_{2}\}$
+	\begin{enumerate}
+	\item $c(e_{1}) = \{e_{3}, e_{4}, e_{5}\}$ 
+		\begin{enumerate}
+		\item $c(e_{3}) = \{u(e_{9})=5, u(e_{10})=1, u(e_{11})=4 \}$
+		\item $c(e_{4}) = \{u(e_{12})=2, u(e_{13})=7, u(e_{14})=9 \}$
+		\item $c(e_{5}) = \{u(e_{15})=3, u(e_{16})=5, u(e_{17})=7 \}$
+		\end{enumerate}
+	\item $c(e_{2}) = \{e_{6}, e_{7}, e_{8}\}$
+		\begin{enumerate}
+		\item $c(e_{6}) = \{u(e_{18})=9, u(e_{19})=2, u(e_{20})=5 \}$
+		\item $c(e_{7}) = \{u(e_{21})=5, u(e_{22})=6, u(e_{23})=4 \}$
+		\item $c(e_{8}) = \{u(e_{24})=8, u(e_{25})=9, u(e_{26})=2 \}$
+		\end{enumerate}
+	\end{enumerate}
+\end{enumerate}
+
+A continuación, partiendo del último nivel, selecciona el máximo valor de cada subconjunto de $e_{n} \mid n = \{3,4,5,6,7,8\}$ y lo asigna como el valor o utilidad del conjunto $c(e_{n}) \mid n = \{3,4,5,6,7,8\}$ para obtener los siguientes valores:
+		\begin{enumerate}
+		\item $u(c(e_{3})) = \argmax{x} \{u(e_{9}), u(e_{10}),  u(e_{11})\}= 5 $
+		\item $u(c(e_{4})) = \argmax{x} \{u(e_{12}), u(e_{13}), u(e_{14})\}=9 $
+		\item $u(c(e_{5})) = \argmax{x} \{u(e_{15}), u(e_{16}), u(e_{17})\}= 7$
+		\item $u(c(e_{6})) = \argmax{x} \{u(e_{18}), u(e_{19}), u(e_{20}) \}=9$
+		\item $u(c(e_{7})) =  \argmax{x} \{u(e_{21}), u(e_{22}), u(e_{23}) \}=6 $
+		\item $u(c(e_{8})) = \argmax{x} \{u(e_{24}), u(e_{25}), u(e_{26})\} = 9$
+\end{enumerate}
+
+Como paso seguido, se imagina que el jugador $i_{2}$, intentará minimizar la puntuación del jugador $i_{1}$ (o lo que es lo mismo, maximizar su propia puntuación denotada por el inverso aditivo de la utilidad de $i_{1}$) y lo asigna como la utilidad esperada o valor de los conjuntos de segundo nivel $c(e_{n}) \mid n = \{1,2\}$ de la siguiente manera:
+	\begin{enumerate}
+	\item $u(c(e_{1})) = \argmin{x} \{u(c(e_{3})), u(c(e_{4})),  u(c(e_{5}))\} = 5$ 
+	\item $u(c(e_{2})) = \argmin{x} \{ u(c(e_{6})),  u(c(e_{7})),  u(c(e_{8}))\}= 6$
+	\end{enumerate}
+
+Finalmente el jugador asigna como utilidad esperada o valor del primer nivel (la raíz del arbol), el valor máximo de los subárboles ya calificados: 
+\begin{enumerate}
+\item $u(c(v_{1})) =\argmax{x} \{u(c(e_{1})) , u(c(e_{2})) \}=6$
+\end{enumerate} 
+
 Jugando de esta manera, el jugador $i_{1}$, puede asegurar una utilidad mínima de $6$. 
 
-Ahora podemos considerar el conjunto de aristas resaltado,  $e^\star = \{e_{2},e_{7},e_{22}\}$, como un vector estrategia del jugador $i_{1}$ que contiene las acciones $e_{2},e_{7},e_{22}$, es gráficamente sencillo demostrar, que este es el punto de equilibrio de la gráfica, o formalmente, el punto de equilibrio Nash, ya que si el jugador $i_{1}$ se desvía de estos ejes, entonces el jugador $i_{2}$ obtiene la oportunidad de reducir la ganancia $i_{1}$. 
+Así, podemos considerar el conjunto de aristas resaltado,  $e^\star = \{e_{2},e_{7},e_{22}\}$, como un vector estrategia del jugador $i_{1}$ que contiene las acciones $e_{2},e_{7},e_{22}$. A partir de este trabajo, es sencillo demostrar que este es el punto de equilibrio de la gráfica, o formalmente, el punto de equilibrio Nash, ya que si el jugador $i_{1}$ se desvía de estos aristas, entonces el jugador $i_{2}$ obtiene la oportunidad de reducir la utilidad de $i_{1}$. 
 
-Por ejemplo, supongamos que el jugador $i_{1}$ realiza el movimiento $e_{1}\notin e^\star$, en lugar del movimiento $e_{2} \in e^\star$.
+Por ejemplo, supongamos que el jugador $i_{1}$ realiza el movimiento $e_{1}\notin e^\star$, en lugar del movimiento $e_{2} \in e^\star$ y por el resto del juego, ambos jugadores realizan jugadas óptimas, el arbol de juego resultante sería el siguiente:
+
+\begin{figure}[h]
+\centering
+\scalebox{0.95}
+{
+\begin{forest}
+sn edges
+[$v_{1}$,rectangle,draw
+    [$v_{2}$,circle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{1}$}},edge ={line width=1.5pt},
+        [$v_{4}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{3}$}},edge ={line width=1.5pt},
+            [5,
+            %regular polygon,draw, 
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{9}$}},edge ={line width=1.5pt},
+            ]
+            [1, 
+            %regular polygon,draw,
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{10}$}}]
+            [4, 
+            %regular polygon,draw,  
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{11}$}}]
+        ]
+        [$v_{5}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{4}$}}
+            [2, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{12}$}}
+            ]
+            [7, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{13}$}}]
+            [9, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{14}$}}]
+        ]
+        [$v_{6}$,rectangle,draw, edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{5}$}}
+            [3, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{15}$}}
+            ]
+            [5, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{16}$}}
+            ]
+            [7, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{17}$}}
+            ]
+        ]
+    ]
+    [$v_{3}$,circle,draw,  edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{2}$}}
+        [$v_{7}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{6}$}}
+            [9, 
+             edge label={node[midway,below =1mm,font=\scriptsize]{$e_{18}$}}
+            %regular polygon,draw
+            ]
+            [2, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{19}$}}
+            ]
+            [5, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{20}$}}
+            ]
+        ]
+        [$v_{8}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{7}$}}
+            [5, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{21}$}}
+            ]
+            [6,
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{22}$}}
+            ]
+            [4, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{23}$}}
+            ]
+        ]
+        [$v_{9}$,rectangle,draw, edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{8}$}}
+            [8, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{24}$}}
+            ]
+            [9, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{25}$}}
+            ]
+            [2, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{26}$}}
+            ]
+        ]
+    ]
+    %[\phantom{1},circle,draw%, edge label={node[midway,right= 68mm,above= 3mm, font=\scriptsize]{MAX}}
+    %    [\phantom{1},rectangle,draw
+    %        [3, regular polygon,draw]
+    %        [7, regular polygon,draw]
+    %        [2, regular polygon,draw]
+    %    ]
+    %    [\phantom{1},rectangle,draw
+    %        [7, regular polygon,draw]
+    %        [6, regular polygon,draw]
+    %        [5, regular polygon,draw]
+    %    ]
+    %    [\phantom{1},rectangle,draw%, edge label={node[midway,right= 27mm,above= 3mm, font=\scriptsize]{MIN}}
+    %        [9, regular polygon,draw]
+    %        [8, regular polygon,draw]%, edge ={line width=1.5pt}]
+    %        [9 ,  regular polygon,draw %edge label={node[midway,right= 15mm,above= 3mm, font=\scriptsize]{MAX}}
+    %        ]
+    %    ]
+    %]
+]
+\end{forest}
+}
+\caption{Jugadas subóptimas $minimax$ del juego $\gamma_{1}$}
+\end{figure}
+
+Como se puede observar, a pesar de que los subárboles alcancan los puntos de equilibrio locales,la utilidad esperada del jugador $i_{1}$, se reduce de 6 al utilizar la estrategia óptima $e^\star$ a 5 al utilizar una estrategia subóptima, dado que no se llega al punto de equilibrio global. 
+
+\clearpage
+La observación anterior es formalizada en el teorema minimax probado por vez primera en 1928 por el polímata Von Neuman\autocite[5]{hajiaghayi_28._2011-1} , que establece que para cada juego $\gamma$ finito de suma zero entre dos jugadores, existen estrategias $s^\star$ y $t^\star$ tales que si: 
+\begin{enumitem}
+\item $i_{1}$ = MAX (jugador que busca maximizar)
+\item $i_{2}$ = MIN (jugador que busca minimizar)
+\item $s$ es un vector estrategia de MAX
+\item $t$ es un vector estrategia de MIN
+\item $u(s,t)$ es la utilidad de un juego que sigue los vectores estrategia $s$, y $t$
+\item $v$ es el valor minimax (la mayor utilidad considerando un juego perfecto) de $G$
+\end{enumitem}
+
+Entonces: 
+\begin{enumitem}
+\item $\exists t^\star \mid$ si MIN utiliza $t^\star$, entonces la utilidad esperada de MAX es $\leq v$ 
+\item $\exists s^\star \mid$ si MAX utiliza $s^\star$, entonces la utilidad esperada de MIN es $\geq v$ 
+\end{enumitem}
+
+Por lo tanto, sigue que si ambos jugadores utilizan sus estrategias óptimas:
+\begin{equation}
+max_{s}u(s,t^\star) = min_{t}u(s^\star,t) = v
+\end{equation}
+
+Esto significa que el valor $v$, es un punto de equilibrio Nash\autocite[6]{hajiaghayi_28._2011-1}.
+\clearpage
+Para explorar este procedimiento en distintos contextos, lo trasladé al siguiente algoritmo\autocite[2]{weibul_game_2011}: 
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{MiniMax}{Nodo n, Booleano JuegaComputadora}
+  \If{n es terminal}
+  \If{Gana computadora}
+  \State \Return 10
+  \ElsIf{Gana humano}
+  \State \Return -10
+  \Else
+  \State \Return  0
+  \EndIf
+  \Else
+  \If{JuegaComputadora $=verdadero$}
+  \State $\alpha = -\infty$
+  \ForAll{arista $e'$ en $c(e_{n})$}
+  \State $\alpha = \argmax{x}$ MiniMax$(e', falso)$
+  \EndFor
+  \State \Return  $\alpha$
+  \Else
+  \State $\beta = \infty$
+  \ForAll{arista $e'$ en $c(e_{n})$}
+  \State $\beta = \argmin{x}$ MiniMax$(e', verdadero)$
+  \EndFor
+  \State \Return  $\beta$
+  \EndIf
+  \EndIf
+\EndProcedure
+\end{algorithmic}
+\caption{MiniMax}\label{alg:MiniMax}
+\end{algorithm}
+
+Posteriormente programé un pequeño código en Java diseñado para jugar juegos \emph{m,n,k} utilizando este algoritmo ya sea contra sí mismo o contra un humano. El programa reporta diversos registros del algoritmo, entre ellos, el número de nodos en el árbol construido. 
+
+3*3
+0,549946
+1,59705
+2,7332
+3,935
+4,198
+5,47
+6,14
+7,5
+8,2
+9,1
+
+3*3 alphabeta
+20866
+2788
+871
+75
+64
+17
+10
+5
+2
+
+3*3 alphabeta r1
+16551
+4146
+1080
+235
+105
+35
+12
+5
+2
+
+3*3 alphabeta r2 
+17399
+3059
+1211
+361
+82
+37
+12
+5
+2
+
+3*3 alphabeta r3
+17088
+2440
+1042
+404
+82
+29
+14
+5
+2
+
+3*3 alphabeta r4 
+18143
+3115
+1017
+370
+126
+36
+11
+5
+2
+
+3*3 alphabeta r5
+16624
+3098
+774
+310
+78
+31
+10
+5
+2
