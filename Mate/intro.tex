@@ -1,6 +1,7 @@
-\Large{\textbf{Análisis de la complejidad computacional del algoritmo Minimax}}
-
 \normalsize
+\Large{\textbf{Análisis de la complejidad computacional del algoritmo Minimax en el algoritmo \emph{juego m,n,k}}}
+
+\section{Introducción}
 El juego es parte fundamental de las sociedades y las culturas del hombre.
 Naturalmente existen de diversos tipos, pero lo que todos tienen en común es el
 hecho de que estimulan el pensamiento estratégico de  los jugadores. Por lo
@@ -11,7 +12,7 @@ inició como una descripción de los juegos de azar.
 Por esta misma razón, desde el surguimiento de las computadoras, uno de los
 principales objetivos de los computólogos ha sido la creación de inteligencias
 artificiales programadas para resolver este tipo de problemas. Por esta razón
-comenzó a interesarme el tema del algoritmo Minimax, ya que me parece un
+comenzó a interesarme el tema del algoritmo \emph{Minimax}, ya que me parece un
 procedimiento cuyo planteamiento es simultáneamente simple y poderoso. El área
 de inteligencia artificial, que combina de manera interdisciplinaria
 concocimientos de distintas ramas, como matemáticas e informática, me parece
@@ -30,15 +31,305 @@ efectiva para la toma de decisiones bajo diversas circunstancias.
 De esta manera, decidí indagar sobre las técnicas fundamentales detrás del éxito
 revolucionario de Deep Blue, esta investigación me llevó a aprender, entre otras
 cosas, sobre la
-estrategia Minimax y sobre la teoría detrás de esta misma. Y debido a  mi profundo interés en
+estrategia \emph{Minimax} y sobre la teoría detrás de esta misma. Y debido a  mi profundo interés en
 la programación me percaté de que implementar un algoritmo similar seria un
 excelente reto para aprender más sobre los fundamentos de una de las ramas que
-me parecen más interensantes del desarrollo tecnológico contemporáneo. 
+me parecen más interesantes del desarrollo tecnológico contemporáneo. 
 
-Lo que me propuse en esta investigación fue aprender sobre el algoritmo Minimax
-e implementarlo en un pequeño programa, asímismo, me interesó conocer
-sobre su comportamiento en distintos escenarios, particularmente sobre los
+Lo que me propuse en esta investigación fue aprender sobre el algoritmo \emph{Minimax}
+e implementarlo en un pequeño programa, ya que de esta manera podría obtener un conocimiento más personal del mismo al expresarlo en mi propio código. Asímismo, me interesó conocer
+sobre su comportamiento bajo distintos escenarios, particularmente sobre los
 requerimientos computacionales de tiempo y espacio para hallar la solución
-óptima bajo distintos escenarios para determinar posibles limitaciones del procedimiento. 
+óptima bajo distintos escenarios y determinar las posibles limitaciones del procedimiento. En otras palabras, comprobar experimentalmente lo que en ciencias de la computación se conoce como la  \emph{complejidad asintótica} del algoritmo. 
 
-Para esto, decidí investigar los juegos de Gato, Conecta-4 y Gomoku, todos pertenecientes a la familia de los juegos de conección.
+\section{Sobre los juegos}
+Para lograr este objetivo, decidí comenzar investigando los juegos de \emph{Gato} y  \emph{Conecta-4}, ya que . Ambos pertenecen a la familia de los juegos de conección y similares en naturaleza. Esto es porque pueden ser generalizados como un único juego abstracto, conocido como \emph{juego m,n,k}, donde \emph{m} y \emph{n} son el número de columnas y filas en el tablero, y \emph{k} sería el número de fichas que los jugadores deben conectar. Así, el juego de \emph{Gato} sería el juego \emph{3,3,3}, el juego de Conecta-4 \emph{7,6,4} con la adicional regla de limitar hacia el eje horizontal los posibles movimientos del jugador. 
+
+Por la relativa simplicidad del juego de \emph{gato}, decidí utilizarlo únicamente como una base de análisis, y partir de ahí para observar el crecimiento en la complejidad de los juegos y el algoritmo.
+
+Adicionalmente, el juego \emph{juego m,n,k} podría ser caracterizado como un juego \emph{no cooperativo} entre dos jugadores y de \emph{suma cero}, \emph{secuencial} de \emph{información perfecta}. 
+En otras palabras, en un juego \emph{juego m,n,k}, existen dos jugadores, max y min, que toman turnos para poner fichas en un tablero, y la utilidad final del juego para cada jugador se cancela entre sí. 
+
+Por ejemplo, en el juego de gato, si un jugador gana, el otro pierde y viceversa; en el caso alternativo, ambos empatan con utilidades iguales. Formalmente, la utilidad  $u$ del jugador $i_{1}$ con respecto a la del jugador $i_{2}$ en un estado $s$ sería la siguiente:
+
+\begin{equation}
+u_{i_{1}}(s)=-u_{2_{1}}(s)
+\end{equation}
+
+Por lo tanto:
+
+\begin{equation}
+u_{i_{1}}(s)+u_{2_{1}}(s) = 0
+\end{equation}
+
+Para que un juego deba considerarse de suma cero, esta propiedad debe mantenerse en todos los estados posibles del juego, de tal manera que se cumpla lo siguiente:
+
+\begin{equation}
+\forall s \in S, \sum_{a=1}^{n}{u_{i_{1}}(s)}+{u_{i_{2}}(s)}=0
+\end{equation}
+
+O, en otras palabras, en todo juego posible, la utilidad final de un jugador cancela la del otro, o que exactamente lo que uno gana, pierde el otro.
+
+En consecuencia, la estrategia óptima de cada jugador intenará maximizar su propia ganancia minimizando la de su contrincante, ese es el núcleo de la estrategia minimax. Y su principal utilidad es que por medio de esta, el jugador $i_{x}$ puede garantizar su utilidad mínima de manera independiente de la estrategia de su adversario, en otras palabras, prepararse adecuadamente para el peor escenario (uno en el cuál compita contra otro jugador óptimo).
+
+Para visualizarla, es conveniente utilizar un grafo dirigido representando las posibles decisiones decisiones de los jugadores, formalmente conocido como o arbol de juego, en donde cada arista representa una decisión, y cada vértice un estado de juego. 
+
+
+Por ejemplo, supongamos que un juego secuencial de información perfecta y  dos jugadores, $\gamma$, tiene el siguiente arbol dirigido, $G = (V,E)$, cuyo conjunto de vértices $V$, representa los  estados posibles del juego, $S(\gamma)$. Los cuadrados y círulos en los vértices representan respectivamente, momentos en los  que los jugadores $i_{1}$ e $i_{2}$ deben realizar una jugada. 
+Estas acciones son representadas en el grafo por el conjunto de aristas $E$. Como el juego se da por turnos, cada decisión contiene el subgrafo resultante $H_{s}(V',E') \in G$, donde $E'$ representa las posibles acciones del jugador y $V'$, el estado del juego después de dicha acción. Y los números, ubicados en nodos terminales --donde acaba el juego--, representan la utilidad $u(s)$ del estado $s$ después de la acción $e_{x}$. 
+
+\begin{figure}[h]
+\centering
+\scalebox{0.95}
+{
+\begin{forest}
+for tree={%
+%node options={draw,font=\sffamily},
+edge={->,line width=.5pt},
+if n children=0{
+%calign secondary angle=90, calign primary angle=90
+calign=fixed edge angles,
+}{}
+}
+[$v_{1}$,rectangle,draw
+    [$v_{2}$,circle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{1}$}}
+        [$v_{4}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{3}$}}
+            [5, 
+            %regular polygon,draw, 
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{9}$}}
+            ]
+            [1, 
+            %regular polygon,draw,
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{10}$}}]
+            [4, 
+            %regular polygon,draw,  
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{11}$}}]
+        ]
+        [$v_{5}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{4}$}}
+            [2, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{12}$}}
+            ]
+            [7, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{13}$}}]
+            [9, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{14}$}}]
+        ]
+        [$v_{6}$,rectangle,draw, edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{5}$}}
+            [3, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{15}$}}
+            ]
+            [5, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{16}$}}
+            ]
+            [7, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{17}$}}
+            ]
+        ]
+    ]
+    [$v_{3}$,circle,draw, edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{2}$}}
+        [$v_{7}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{6}$}}
+            [9, 
+             edge label={node[midway,below =1mm,font=\scriptsize]{$e_{18}$}}
+            %regular polygon,draw
+            ]
+            [2, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{19}$}}
+            ]
+            [5, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{20}$}}
+            ]
+        ]
+        [$v_{8}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{7}$}}
+            [5, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{21}$}}
+            ]
+            [6, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{22}$}}
+            ]
+            [4, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{23}$}}
+            ]
+        ]
+        [$v_{9}$,rectangle,draw, edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{8}$}}
+            [8, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{24}$}}
+            ]
+            [9, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{25}$}}
+            ]
+            [2, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{26}$}}
+            ]
+        ]
+    ]
+    %[\phantom{1},circle,draw%, edge label={node[midway,right= 68mm,above= 3mm, font=\scriptsize]{MAX}}
+    %    [\phantom{1},rectangle,draw
+    %        [3, regular polygon,draw]
+    %        [7, regular polygon,draw]
+    %        [2, regular polygon,draw]
+    %    ]
+    %    [\phantom{1},rectangle,draw
+    %        [7, regular polygon,draw]
+    %        [6, regular polygon,draw]
+    %        [5, regular polygon,draw]
+    %    ]
+    %    [\phantom{1},rectangle,draw%, edge label={node[midway,right= 27mm,above= 3mm, font=\scriptsize]{MIN}}
+    %        [9, regular polygon,draw]
+    %        [8, regular polygon,draw]%, edge ={line width=1.5pt}]
+    %        [9 ,  regular polygon,draw %edge label={node[midway,right= 15mm,above= 3mm, font=\scriptsize]{MAX}}
+    %        ]
+    %    ]
+    %]
+]
+\end{forest}
+}
+\caption{Árbol de decisiones del juego $\gamma$}
+
+\end{figure}
+
+Naturalmente, como comentamos con anterioridad, cada jugador --asumiendo que racionales (con la implicación de que como se encuentran en un juego de información perfecta, son capaces de visualizar el arbol anterior)--, intentará obtener el puntaje mayor reduciéndo el de su oponente para asegurar un puntaje mayor dentro de los puntajes mínimos seleccionados por su contrincante, a este puntaje se le conoce como el valor $minimax$ del nodo. 
+
+\clearpage
+Un juego así se desarrollaría de la siguiente manera: 
+
+\begin{figure}[h]
+\centering
+\scalebox{0.95}
+{
+\begin{forest}
+for tree={%
+%node options={draw,font=\sffamily},
+edge={->,line width=.5pt},
+if n children=0{
+%calign secondary angle=90, calign primary angle=90
+calign=fixed edge angles,
+}{}
+}
+[$v_{1}$,rectangle,draw
+    [$v_{2}$,circle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{1}$}}
+        [$v_{4}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{3}$}}
+            [5,
+            %regular polygon,draw, 
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{9}$}}
+            ]
+            [1, 
+            %regular polygon,draw,
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{10}$}}]
+            [4, 
+            %regular polygon,draw,  
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{11}$}}]
+        ]
+        [$v_{5}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{4}$}}
+            [2, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{12}$}}
+            ]
+            [7, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{13}$}}]
+            [9, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{14}$}}]
+        ]
+        [$v_{6}$,rectangle,draw, edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{5}$}}
+            [3, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{15}$}}
+            ]
+            [5, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{16}$}}
+            ]
+            [7, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{17}$}}
+            ]
+        ]
+    ]
+    [$v_{3}$,circle,draw, edge ={line width=1.5pt}, edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{2}$}}
+        [$v_{7}$,rectangle,draw, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{6}$}}
+            [9, 
+             edge label={node[midway,below =1mm,font=\scriptsize]{$e_{18}$}}
+            %regular polygon,draw
+            ]
+            [2, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{19}$}}
+            ]
+            [5, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{20}$}}
+            ]
+        ]
+        [$v_{8}$,rectangle,draw, edge ={line width=1.5pt}, edge label={node[midway,left=1.0mm,font=\scriptsize]{$e_{7}$}}
+            [5, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{21}$}}
+            ]
+            [6,  edge ={line width=1.5pt},
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{22}$}}
+            ]
+            [4, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{23}$}}
+            ]
+        ]
+        [$v_{9}$,rectangle,draw, edge label={node[midway,right=1.0mm,font=\scriptsize]{$e_{8}$}}
+            [8, 
+            %regular polygon,draw
+            edge label={node[midway,below =1mm,font=\scriptsize]{$e_{24}$}}
+            ]
+            [9, 
+            %regular polygon,draw
+            edge label={node[midway,below=.75mm,xshift=1.5mm,font=\scriptsize]{$e_{25}$}}
+            ]
+            [2, 
+            %regular polygon,draw
+            edge label={node[midway,below=.50mm,xshift=3.5mm,font=\scriptsize]{$e_{26}$}}
+            ]
+        ]
+    ]
+    %[\phantom{1},circle,draw%, edge label={node[midway,right= 68mm,above= 3mm, font=\scriptsize]{MAX}}
+    %    [\phantom{1},rectangle,draw
+    %        [3, regular polygon,draw]
+    %        [7, regular polygon,draw]
+    %        [2, regular polygon,draw]
+    %    ]
+    %    [\phantom{1},rectangle,draw
+    %        [7, regular polygon,draw]
+    %        [6, regular polygon,draw]
+    %        [5, regular polygon,draw]
+    %    ]
+    %    [\phantom{1},rectangle,draw%, edge label={node[midway,right= 27mm,above= 3mm, font=\scriptsize]{MIN}}
+    %        [9, regular polygon,draw]
+    %        [8, regular polygon,draw]%, edge ={line width=1.5pt}]
+    %        [9 ,  regular polygon,draw %edge label={node[midway,right= 15mm,above= 3mm, font=\scriptsize]{MAX}}
+    %        ]
+    %    ]
+    %]
+]
+\end{forest}
+}
+\caption{Jugadas óptimas $minimax$ del juego $\gamma$}
+
+\end{figure}
+Jugando de esta manera, el jugador $i_{1}$, puede asegurar una utilidad mínima de $6$. 
+
+Ahora podemos considerar el conjunto de aristas resaltado,  $e^\star = \{e_{2},e_{7},e_{22}\}$, como un vector estrategia del jugador $i_{1}$ que contiene las acciones $e_{2},e_{7},e_{22}$, es gráficamente sencillo demostrar, que este es el punto de equilibrio de la gráfica, o formalmente, el punto de equilibrio Nash, ya que si el jugador $i_{1}$ se desvía de estos ejes, entonces el jugador $i_{2}$ obtiene la oportunidad de reducir la ganancia $i_{1}$. 
+
+Por ejemplo, supongamos que el jugador $i_{1}$ realiza el movimiento $e_{1}\notin e^\star$, en lugar del movimiento $e_{2} \in e^\star$.
