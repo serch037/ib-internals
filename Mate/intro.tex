@@ -820,10 +820,10 @@ sn edges
 
 \end{figure}
 
-A este procedimiento se le conoce como \emph{poda alfa-beta}, debido a que utiliza los valores $\alpha$ y $\beta$ del algoritmo Minimax\ref{MiniMax} para definir los puntos quiebre en el proceso recursivo del mismo. Concretamente, podemos redefinir a la variable $\alpha$ como la cota máxima inferior de los valores del subárbol, mientras que  $\beta$ representa la cota mínima superior de este\autocite{bruce_cs_}. Estos valores son actualizados con cada recursión del algoritmo hasta que $\beta \leq \alpha$. 
+A este procedimiento se le conoce como \emph{poda alfa-beta}, debido a que utiliza los valores $\alpha$ y $\beta$ del algoritmo Minimax\ref{alg:MiniMax} para definir los puntos quiebre en el proceso recursivo del mismo. Concretamente, podemos redefinir a la variable $\alpha$ como la cota máxima inferior de los valores del subárbol, mientras que  $\beta$ representa la cota mínima superior de este\autocite{bruce_cs_}. Estos valores son actualizados con cada recursión del algoritmo hasta que $\beta \leq \alpha$. 
 
 \clearpage
-Para comparar este procedimiento con el algoritmo Minimax\ref{MiniMax}, decidí programarlo como una función alternativa en mi pequeño programa de la siguiente manera: 
+Para comparar este procedimiento con el algoritmo Minimax\ref{alg:MiniMax}, decidí programarlo como una función alternativa en mi pequeño programa de la siguiente manera: 
 
 \begin{algorithm}
 \begin{algorithmic}
@@ -897,5 +897,52 @@ Turno & Número de nodos  \\
 \end{center}
 
 \section{Análisis de complejidad asintótica}
-Para determinar la función de crecimiento de los algoritmos y determinar la magnitud de optimización entre Alfa-beta y Minimax, decidí graficar el número de nodos visitados en cada turno de juego. 
+Para determinar la función de crecimiento de los algoritmos y determinar la magnitud de optimización entre Alfa-beta y Minimax, decidí graficar el número de nodos visitados en cada turno de juego y aproximar dicha la gráfica con distintas funciones. 
+
+Mi primer acercamiento se fundamentó en la teoría de combinatoria y límites, para obtener, de manera asintótica, una estimación del número de nodos en la gráfica. Fundamentalmente, podemos decir que la complejidad del algoritmo Minimax\ref{alg:MiniMax}, es $O(b^d)$, donde $b$ es el número promedio de aristas por vértice y $d$ es la profundidad del árbol. Debe recorrer  como esta es solo una  aproximación, asumiremos lo siguiente: 
+
+La sumatoria de una progresión geométrica infinita tiende a asemejarse al último término de esta. 
+
+Ya que la fórmula para esta es:
+\begin{equation}
+(1-r^n)/1-r
+\end{equation}
+
+Nuestro límite entonces es el siguiente: 
+\begin{equation}
+\lim_{\substack{b\to \infty \\ d\to \infty}} \approx b^d
+\end{equation}
+
+
+
+O es su defecto:
+\begin{equation}
+\lim_{\substack{b\to \infty \\ d\to \infty}} = 0
+\end{equation} 
+Como podemos hacer $b$ arbitrariamente grande, entonces es sólido concluir que la razón entre la sumatoria infinita de $b^d$ y $b^d$ tenderá a ser cero, puesto que el crecimiento exponencial eventualmente nulificará esta razón común. 
+
+Para demostrar esto, decidí graficar dos escenarios con distintos valores de $b$, el primero con un valor pequeño y posteriormente con uno mayor. Mis resultados fueron los siguientes: 
+\begin{figure}[H]
+\centering
+\includegraphics{Graphs/Funciones1.png}
+\caption{Razón entre sumatoria de progresión y último término}\label{graf1}
+\end{figure}
+
+Como observé que el valor de $x$ rápidamente llegaba a su asíntota decidí modificar la variable de independiente: 
+\begin{figure}[H]
+\centering
+\includegraphics{Graphs/Funciones1.png}
+\caption{Razón entre sumatoria de progresión y último término}\label{graf1}
+\end{figure}
+
+De esta aproximación describí el comportamiento asintótico del algoritmo con la siguiente función:
+\begin{equation}
+f(x) = 4^(9-x)
+\end{equation}
+Ya que según los datos de mi programa, $4$ fue el promedio de ramificaciones del árbol de juego y 9 es el número máximo de turnos, que representa la \emph{profundidad} del árbol. Para obtener una mejor correlación con la gráfica, posteriormente ajusté este valor\footnote{Lo que se justifica al considerar que el número de subárboles de una sola rama es exponencialmente mayor al resto, según nuestra anterior función}, y obtuve un mejor aproximado del valor de ramificación de $4.5511$: 
+\begin{figure}[H]
+\centering
+\includegraphics{Graphs/Minis_ Exposimples.png}
+\caption{Comportamiento asíntotico de Minimax}\label{graf2}
+\end{figure}
 
