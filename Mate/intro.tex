@@ -42,6 +42,7 @@ sobre su comportamiento bajo distintos escenarios, particularmente sobre los
 requerimientos computacionales de tiempo y espacio para hallar la solución
 óptima bajo distintos escenarios y determinar las posibles limitaciones del procedimiento. En otras palabras, comprobar experimentalmente lo que en ciencias de la computación se conoce como la  \emph{complejidad asintótica} del algoritmo. 
 
+\clearpage
 \section{Sobre los juegos}
 Para lograr este objetivo, decidí comenzar investigando los juegos de \emph{Gato} y  \emph{Conecta-4}, ya que . Ambos pertenecen a la familia de los juegos de conección y similares en naturaleza. Esto es porque pueden ser generalizados como un único juego abstracto, conocido como \emph{juego m,n,k}, donde \emph{m} y \emph{n} son el número de columnas y filas en el tablero, y \emph{k} sería el número de fichas que los jugadores deben conectar. Así, el juego de \emph{Gato} sería el juego \emph{3,3,3}, el juego de Conecta-4 \emph{7,6,4} con la adicional regla de limitar hacia el eje horizontal los posibles movimientos del jugador. 
 
@@ -492,7 +493,6 @@ sn edges
 
 Como se puede observar, a pesar de que los subárboles alcancan los puntos de equilibrio locales,la utilidad esperada del jugador $i_{1}$, se reduce de 6 al utilizar la estrategia óptima $e^\star$ a 5 al utilizar una estrategia subóptima, dado que no se llega al punto de equilibrio global. 
 
-\clearpage
 La observación anterior es formalizada en el teorema minimax probado por vez primera en 1928 por el polímata Von Neuman\autocite[5]{hajiaghayi_28._2011-1} , que establece que para cada juego $\gamma$ finito de suma zero entre dos jugadores, existen estrategias $s^\star$ y $t^\star$ tales que si: 
 \begin{enumitem}
 \item $i_{1}$ = MAX (jugador que busca maximizar)
@@ -515,7 +515,6 @@ max_{s}u(s,t^\star) = min_{t}u(s^\star,t) = v
 \end{equation}
 
 Esto significa que el valor $v$, es un punto de equilibrio Nash\autocite[6]{hajiaghayi_28._2011-1}.
-\clearpage
 Para explorar este procedimiento en distintos contextos, lo trasladé al siguiente algoritmo\autocite[2]{weibul_game_2011}: 
 \begin{algorithm}
 \begin{algorithmic}
@@ -822,7 +821,6 @@ sn edges
 
 A este procedimiento se le conoce como \emph{poda alfa-beta}, debido a que utiliza los valores $\alpha$ y $\beta$ del algoritmo Minimax\ref{alg:MiniMax} para definir los puntos quiebre en el proceso recursivo del mismo. Concretamente, podemos redefinir a la variable $\alpha$ como la cota máxima inferior de los valores del subárbol, mientras que  $\beta$ representa la cota mínima superior de este\autocite{bruce_cs_}. Estos valores son actualizados con cada recursión del algoritmo hasta que $\beta \leq \alpha$. 
 
-\clearpage
 Para comparar este procedimiento con el algoritmo Minimax\ref{alg:MiniMax}, decidí programarlo como una función alternativa en mi pequeño programa de la siguiente manera: 
 
 \begin{algorithm}
@@ -863,7 +861,7 @@ Para comparar este procedimiento con el algoritmo Minimax\ref{alg:MiniMax}, deci
   \EndIf
 \EndProcedure
 \end{algorithmic}
-\caption{MiniMax\label{alg:MiniMax}}
+\caption{MiniMax\label{alg:alfaBeta}}
 \end{algorithm}
 
 Al correr este algoritmo contra sí mismo en un juego simple de gato, obtuve los siguientes resultados:
@@ -873,19 +871,19 @@ Al correr este algoritmo contra sí mismo en un juego simple de gato, obtuve los
 \hline
 Turno & Número de nodos  \\ 
 \hline
-0 & 549946 \\ 
+0 & 20866 \\ 
 \hline
-1 & 59705 \\ 
+1 & 2788 \\ 
 \hline
-2 & 7332 \\ 
+2 & 871 \\ 
 \hline
-3  & 6935 \\ 
+3  & 75 \\ 
 \hline
-4 & 198 \\ 
+4 & 64 \\ 
 \hline
-5 & 47 \\ 
+5 & 17 \\ 
 \hline
-6 & 14 \\ 
+6 & 10 \\ 
 \hline
 7 & 5 \\ 
 \hline
@@ -896,53 +894,70 @@ Turno & Número de nodos  \\
 \end{tabular}
 \end{center}
 
+Dado que el total de evaluaciones en Minimax\ref{alg:MiniMax} fue de $618185$, mientras que con esta optimización se hicieron solo $24,698$ podemos decir que se redujeron las evaluaciones por un factor de $25$. 
+
 \section{Análisis de complejidad asintótica}
 Para determinar la función de crecimiento de los algoritmos y determinar la magnitud de optimización entre Alfa-beta y Minimax, decidí graficar el número de nodos visitados en cada turno de juego y aproximar dicha la gráfica con distintas funciones. 
 
-Mi primer acercamiento se fundamentó en la teoría de combinatoria y límites, para obtener, de manera asintótica, una estimación del número de nodos en la gráfica. Fundamentalmente, podemos decir que la complejidad del algoritmo Minimax\ref{alg:MiniMax}, es $O(b^d)$, donde $b$ es el número promedio de aristas por vértice y $d$ es la profundidad del árbol. Debe recorrer  como esta es solo una  aproximación, asumiremos lo siguiente: 
+Mi primer acercamiento se fundamentó en la teoría de combinatoria y límites, para obtener, de manera asintótica, una estimación del número de nodos en la gráfica. Fundamentalmente, podemos decir que la complejidad del algoritmo Minimax\ref{alg:MiniMax}, es $O(b^{d})$, donde $b$ es el número promedio de aristas por vértice y $d$ es la profundidad del árbol. Debe recorrer  como esta es solo una  aproximación, asumiremos lo siguiente: 
 
 La sumatoria de una progresión geométrica infinita tiende a asemejarse al último término de esta. 
 
 Ya que la fórmula para esta es:
 \begin{equation}
-(1-r^n)/1-r
+S_{n}(1-r^{n})/1-r
 \end{equation}
 
 Nuestro límite entonces es el siguiente: 
 \begin{equation}
-\lim_{\substack{b\to \infty \\ d\to \infty}} \approx b^d
+\lim_{\substack{b\to \infty \\ d\to \infty}} (1-b^{d})/1-b \approx b^{d}
 \end{equation}
 
 
 
 O es su defecto:
 \begin{equation}
-\lim_{\substack{b\to \infty \\ d\to \infty}} = 0
+\lim_{\substack{b\to \infty \\ d\to \infty}} ((1-b^{d})/1-b)/b^{d} = 0
 \end{equation} 
-Como podemos hacer $b$ arbitrariamente grande, entonces es sólido concluir que la razón entre la sumatoria infinita de $b^d$ y $b^d$ tenderá a ser cero, puesto que el crecimiento exponencial eventualmente nulificará esta razón común. 
+Como podemos hacer $b$ arbitrariamente grande, entonces es sólido concluir que la razón entre la sumatoria infinita de $b^{d}$ y $b^{d}$ tenderá a ser cero, puesto que el crecimiento exponencial eventualmente nulificará esta razón común. 
 
 Para demostrar esto, decidí graficar dos escenarios con distintos valores de $b$, el primero con un valor pequeño y posteriormente con uno mayor. Mis resultados fueron los siguientes: 
 \begin{figure}[H]
 \centering
-\includegraphics{Graphs/Funciones1.png}
+\includegraphics[scale=.60]{Graphs/Funciones1.png}
 \caption{Razón entre sumatoria de progresión y último término}\label{graf1}
 \end{figure}
 
 Como observé que el valor de $x$ rápidamente llegaba a su asíntota decidí modificar la variable de independiente: 
 \begin{figure}[H]
 \centering
-\includegraphics{Graphs/Funciones1.png}
+\includegraphics[scale=.60]{Graphs/Funciones2.png}
 \caption{Razón entre sumatoria de progresión y último término}\label{graf1}
 \end{figure}
 
 De esta aproximación describí el comportamiento asintótico del algoritmo con la siguiente función:
 \begin{equation}
-f(x) = 4^(9-x)
+f(x) = 4^{(9-x)}
 \end{equation}
 Ya que según los datos de mi programa, $4$ fue el promedio de ramificaciones del árbol de juego y 9 es el número máximo de turnos, que representa la \emph{profundidad} del árbol. Para obtener una mejor correlación con la gráfica, posteriormente ajusté este valor\footnote{Lo que se justifica al considerar que el número de subárboles de una sola rama es exponencialmente mayor al resto, según nuestra anterior función}, y obtuve un mejor aproximado del valor de ramificación de $4.5511$: 
 \begin{figure}[H]
 \centering
-\includegraphics{Graphs/Minis_ Exposimples.png}
+\includegraphics[scale=.60]{Graphs/Minis_Exposimples.png}
 \caption{Comportamiento asíntotico de Minimax}\label{graf2}
 \end{figure}
 
+Posteriormente, realicé el mismo procedimiento con la optimizacíón alfa-beta\ref{alg:alfaBeta}, partiendo de la premisa de que ofrece ĺa siguiente complejidad asintótica en el mejor escenario $O(b^{(d/2))}$\autocite{bruce_cs_} y ajustando el valor multiplicativo para alcanzar un mejor ajuste: 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.60]{Graphs/Alfas.png}
+\caption{Comportamiento asíntotico de AlfaBeta}\label{graf2}
+\end{figure}
+
+La función que grafiqué previo a realizar un ajuste con el método de menor número de cuadrados fue  la siguiente:
+
+\begin{equation}
+f(x) = 4^{(3*(9-x)/4)}
+\end{equation}
+
+\Section{Conclusión}
+Debido a que MiniMax tiene un crecimiento exponencial, a pesar de su potencial para ofrecer estrategias óptimas, resulta inefectivo para juegos más complicados, ya que naturalmente tendrán una mayor profundidad y factor de ramificación. Por lo tanto, construir el árbol de juego tomaría una cantidad infactible de tiempo. Por lo tanto, la optimización alfa-beta resulta elemental para toda implementación de Minimax. Adicionalmente, podrían combinarse técnicas adicionales, para aproximar el valor real de alfa-beta hacia su óptimo de $O(b^{(d/2)})$, además, miniMax\ref{alg:MiniMax} puede ser modificado para evaluar de manera heurística el juego sin completar la construcción del árbol.
