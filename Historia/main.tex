@@ -1,4 +1,5 @@
-
+%TC:macro \autocite [ignore]
+%TC:macro \hlc [text]
 \documentclass[11pt,letterpaper,oneside,DIV=13]{scrartcl}
 \usepackage{paralist}
 \usepackage{ifpdf}
@@ -20,9 +21,13 @@ spanish=mexican,
 \usepackage[utf8]{inputenc}
 \usepackage{fontspec}
 \usepackage{setspace}
-\setsansfont[Ligatures=TeX]{Arial}
+\usepackage{soul}
+\usepackage{color}
+\newcommand{\hlc}[2][yellow]{ {\sethlcolor{#1} \hl{#2}} }
+%\newcommand{\hlc}[2][yellow]{#2}}
+\setsansfont[Ligatures=TeX]{Times New Roman}
 %\usepackage{sectsty}
-\setmainfont[Ligatures=TeX]{Minion Pro}
+\setmainfont[Ligatures=TeX]{Arial}
 \usepackage{microtype}
 %\usepackage{hyperref}
 \usepackage{enumitem}
@@ -96,6 +101,7 @@ url=false
     \addtocounter{page}{-1}%
     \newpage}
 
+\usepackage[usenames, dvipsnames]{xcolor}
 \begin{document}
 %\begin{flushleft}
 \onehalfspacing

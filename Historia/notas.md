@@ -1,4 +1,4 @@
-# Flor Silverstre
+# Flor Silvestre
 
 * Tierras
     * Mejores ganados
@@ -187,9 +187,9 @@
 * Revolucionarios con porte digno y organizados (0:28)
 	* Istan bandera (2:57) - liberan nación
 		* Monumento a independencia (3:12)
-	* Marchando con disciplina (3:14) al ritmo del himno nacional
+	* Marchano con disciplina (3:14) al ritmo del himno nacional
 * Recibidos por gobernador "bienvenido sea el ejército libertador cuyos aguerriddos paladinos vienen rompiendo con su valor y con su sangre las cadenas opresoras de un pueblo esclavizado"  (3:52)
-	* Respuesta "agárrame al merolico ese"
+	* Respuesta" agárrame al merolico ese"
 * Indaga sobre ricos del pueblo (4:57)
 	* Rencor y maltrato (5:13)
 * "Yo no les llamaría bandidos, son revolucionarios" (5:31) (gobierno anterior)
